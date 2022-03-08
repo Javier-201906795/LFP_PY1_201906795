@@ -84,7 +84,24 @@ def abrirarchivoform():
         nuevoerror("B01", "abrirarchivoform()",mensajeer,e)
         print("Error al abrir el archivo")
 
+################################################################   
+def congregar(cont):
+    temp = ''
+    estado = 0
+    for f in cont:
+        if f == '\n' or f == '\t' or f == '(' or f == ')':
+            pass
+        else:
+            if estado == 0 and f != ' ':
+                temp += f
+                if f == '\"':
+                    estado = 1
+            elif estado == 1:
+                temp += f
+                if f == '\"':
+                    estado = 0
     
+    return temp
 
 ################################################################
 def analizar():
@@ -106,16 +123,58 @@ def analizar():
         txt = txt.lower()
         print(txt)
         #Encontrar la siguente cadena de caracteres "formulario"
-        temp = txt.split('formulario')
-        print("----- tmp")
-        print(temp)
-        print("-----")
+        list1 = txt.split('formulario')
+        temp = list1[1]
+        #Encontrar "~>>"
+        list2 = temp.split('~>>')
+        temp = list2[1]
+        #Encontrar "[" primera vez
+        cont1 = 0
+        for b in temp:
+            cont1 += 1
+            if b == "[":
+                break
+        contenido = temp[cont1:len(temp)]
+        #Eliminar Espacios
+        contenido = congregar(contenido)
+        print("[Contenido]------")
+        print(contenido)
+        print("------")
+        
+        #Encontrar "<" y ">"
+        list3 = contenido.split("<")
+        salidas = []
+        
+        for g in list3:
+            g = g.split(">")[0]
+            salidas.append(g)
 
-        cont= 0
-        for c in temp:
-            cont +=1
-            print("----- for ", cont)
+        print("listado2")
+        for c in salidas:
             print(c)
+
+
+        # contenido = congregar(list3)
+        # print("E------")
+        # print(contenido)
+        # print("------")
+        # for d in list3:
+        #     print("///")
+        #     print(d)
+        #     print("///")
+
+        # contenido = temp.split("[")[1].split("]")[0]
+        # contenido = congregar(contenido)
+        # print("------")
+        # print(contenido)
+        # print("------")
+
+
+        # cont= 0
+        # for c in contenido:
+        #     cont +=1
+        #     print("----- for ", cont)
+        #     print(c)
         
 
 
