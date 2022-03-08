@@ -3,11 +3,13 @@
 from tkinter import *
 from tkinter import filedialog, font
 
+from Errores import Errores
+
 #[ VARIABLES GLOBALES ]
 
 Textform = "N/A"
 TextVacioVentana = ""
-Errores = []
+ListaErrores = []
 
 
 
@@ -24,16 +26,19 @@ def mensaje():
 
 ################################################################
 def imprimirerrores():
-    for c in Errores:
-        print("[",c,"],")
+    print("\n")
+    for c in ListaErrores:
+        print(c.imprimir())
 
 ################################################################
-def agregarerror(txte,num):
-    txte = str(txte)
-    num = str(num)
-    nuevoerror = str(txte + " " + num)
-    global Errores
-    Errores.append(nuevoerror)
+def nuevoerror(codigo,funcion,mesajee,excepccion):
+    #Crea nuevo error
+    newerror = Errores(codigo,funcion,mesajee,excepccion)
+    #Guarda el nuevo error
+    global ListaErrores
+    ListaErrores.append(newerror)
+
+
 
 ################################################################
 def abrirarchivoform():
@@ -75,8 +80,9 @@ def abrirarchivoform():
             return text
     
     except IndexError as e:
-        print("Error al cargar el archivo .form")
-        print(e)
+        mensajeer = "Error al cargar el archivo .form"
+        nuevoerror("B01", "abrirarchivoform()",mensajeer,e)
+        print("Error al abrir el archivo")
 
     
 
@@ -92,20 +98,23 @@ def analizar():
         if txt == TextVacioVentana or  txt == "" or txt == " " or txt == "  " or txt == "   " or txt == "    " or txt == None:
             errorvacio = True
             texte = "El texto a analizar esta Vacio"
-            agregarerror(texte,10)
+            nuevoerror("A01","analizar()",texte,"0")
             imprimirerrores()
     #[ ANALIZAR ]
     if errorvacio == False:
         #Convertir texto a minusculas
         txt = txt.lower()
         print(txt)
-        #Encontrar la siguente cadena de caracteres "formulario ~>>"
+        #Encontrar la siguente cadena de caracteres "formulario"
         temp = txt.split('formulario')
         print("----- tmp")
         print(temp)
         print("-----")
+
+        cont= 0
         for c in temp:
-            print("----- for")
+            cont +=1
+            print("----- for ", cont)
             print(c)
         
 
