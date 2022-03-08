@@ -149,6 +149,8 @@ def analizar():
             g = g.split(">")[0]
             salidas.append(g)
 
+        
+        ##Error por que tambien quita evento: <EVENTO>
         print("listado2")
         for c in salidas:
             print(c)
