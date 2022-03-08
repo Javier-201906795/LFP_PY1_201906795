@@ -1,9 +1,11 @@
 #Librerias
-from tkinter import filedialog, Tk, Label, Button, Entry, Menu, Text, Menubutton, PhotoImage, font
+# from tkinter import filedialog, Tk, Label, Button, Entry, Menu, Text, Menubutton, PhotoImage, font
+from tkinter import *
+from tkinter import filedialog, font
 
+#[ VARIABLES GLOBALES ]
 
-
-
+Textform = "N/A"
 
 
 
@@ -20,7 +22,7 @@ def mensaje():
 
 ################################################################
 
-def abrirarchivolfp():
+def abrirarchivoform():
     try:
         archivo = filedialog.askopenfilename(
         title = "Selecciona un archivo",
@@ -28,12 +30,12 @@ def abrirarchivolfp():
         initialdir =  "./",
         #tipo de archivo que puede seleccionar
         filetype = [
-            ("Archivos LFP", "*.lfp"),
+            ("Archivos LFP", "*.form"),
             ("Todos los archivos", "*.*")
         ]
         )
 
-
+        #Archivo Vacio
         if archivo is None:
             print("No se selecciono ningun archivo" + "\n")
             return None
@@ -42,14 +44,28 @@ def abrirarchivolfp():
             with open(archivo, 'r', encoding='utf8') as file:
                 text = file.read()
                 file.close()
-            #Imprime
-            print("\n----------------- [ .LFP ] ------------------------")
+            #Imprime consola
+            print("\n----------------- [ .form ] ------------------------")
             print(text)
             print("------------------------------------------------ \n")
+            #Limpiar texto en Ventana
+            cuadrotexto.delete('1.0', END)
+
+            #Salvar texto en Ventana
+            cuadrotexto.insert(INSERT,str(text))
+
+            #Salvar texto en Variable
+            global Textform
+            Textform = str(text)
+
+            
+            
+
             return text
     
-    except:
-        print("Error al cargar el archivo .lfp")
+    except IndexError as e:
+        print("Error al cargar el archivo .form")
+        print(e)
 
     
 
@@ -97,7 +113,7 @@ lbl.pack()
 lbl.place(x=5,y=10,width=200, height=40)
 
 
-btnsubir = Button(ventana,text="Subir archivo", command=abrirarchivolfp, fg="#2C2F38", bg="#B5C7F2")
+btnsubir = Button(ventana,text="Subir archivo", command=abrirarchivoform, fg="#2C2F38", bg="#B5C7F2")
 btnsubir['font']= Font2
 btnsubir.pack()
 btnsubir.place(x=30,y=50,width=120, height=30)
@@ -108,6 +124,9 @@ height1 = 400
 cuadrotexto = Text(ventana, width= width1, height=height1, bg="#D8E0F5", fg="#4C5261")
 cuadrotexto.pack(side="left")
 cuadrotexto.place(x= 30, y=100, width = width1, height=height1)
+
+
+
 
 
 
@@ -139,3 +158,6 @@ ventana.mainloop()
 
 ################################################################
 ################################################################
+
+
+
