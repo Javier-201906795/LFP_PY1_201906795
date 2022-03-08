@@ -10,6 +10,7 @@ from Errores import Errores
 Textform = "N/A"
 TextVacioVentana = ""
 ListaErrores = []
+ListadoElementos = []
 
 
 
@@ -104,6 +105,13 @@ def congregar(cont):
     return temp
 
 ################################################################
+def imprimirelementos():
+    print("°°°°°°°[ Elementos ] °°°°°°°°")
+    for g in ListadoElementos:
+        print(g)
+    print("°°°°°°°°°°°°°°°°°°°°°°°°°°°°°\n")
+
+################################################################
 def analizar():
     #Obtener Texto
     txt = str(cuadrotexto.get("1.0",END))
@@ -140,49 +148,43 @@ def analizar():
         print("[Contenido]------")
         print(contenido)
         print("------")
+
+
+        #Encontrar "<t"
+        list4 = contenido.split("<t")
+        list5 = []
         
-        #Encontrar "<" y ">"
-        list3 = contenido.split("<")
-        salidas = []
+        #Agregar "t" y eliminar el primer valor que es vacio
+        cont2 = 0
+        for g in list4:
+            if cont2 > 0:
+                g = "t"+g
+                list5.append(g)
+            cont2 +=1
+            
+        #Encontrar ">,"
+        list6 = []
+        for g in list5:
+            g = g.split(">,")[0]
+            list6.append(g)
+
+        #Encontrar ">]"
+        list7 = []
+        for g in list6:
+            g = g.split(">]")[0]
+            list7.append(g)
+
+        # print("Listado")
+        # for h in list7:
+        #     print(h)
+
+        #GUARDAR ELEMENTOS
+        global ListadoElementos
+        for h in list7:
+            ListadoElementos.append(h)
+        #Imprimir Elementos Guardados
+        imprimirelementos()
         
-        for g in list3:
-            g = g.split(">")[0]
-            salidas.append(g)
-
-        
-        ##Error por que tambien quita evento: <EVENTO>
-        print("listado2")
-        for c in salidas:
-            print(c)
-
-
-        # contenido = congregar(list3)
-        # print("E------")
-        # print(contenido)
-        # print("------")
-        # for d in list3:
-        #     print("///")
-        #     print(d)
-        #     print("///")
-
-        # contenido = temp.split("[")[1].split("]")[0]
-        # contenido = congregar(contenido)
-        # print("------")
-        # print(contenido)
-        # print("------")
-
-
-        # cont= 0
-        # for c in contenido:
-        #     cont +=1
-        #     print("----- for ", cont)
-        #     print(c)
-        
-
-
-
-        # contenido = txt.split("¿")[1].split("?")[0]
-        # print(contenido)
 
 ################################################################
 #Mensaje Bienvenida
