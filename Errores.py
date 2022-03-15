@@ -20,9 +20,9 @@ class Errores:
 
     def imprimir(self):
         if len(self.excepccion) > 5:
-            resumen = {"codigo": self.codigo, "funcion": self.funcion, "mensajee": self.funcion, "excepccion": "excepccion[1]"}
+            resumen = {"codigo": self.codigo, "funcion": self.funcion, "mensajee": self.mensajee, "excepccion": "excepccion[1]"}
         else:
-            resumen = {"codigo": self.codigo, "funcion": self.funcion, "mensajee": self.funcion, "excepccion": self.excepccion}
+            resumen = {"codigo": self.codigo, "funcion": self.funcion, "mensajee": self.mensajee, "excepccion": self.excepccion}
         return resumen
 
     def setcodigo(self,codigo):

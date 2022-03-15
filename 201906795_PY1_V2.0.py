@@ -28,8 +28,10 @@ def mensaje():
 ################################################################
 def imprimirerrores():
     print("\n")
+    print("==============[ Errores ]==================")
     for c in ListaErrores:
         print(c.imprimir())
+    print("===========================================")
 
 ################################################################
 def nuevoerror(codigo,funcion,mesajee,excepccion):
@@ -86,22 +88,7 @@ def abrirarchivoform():
         print("Error al abrir el archivo")
 
 
-    temp = ''
-    estado = 0
-    for f in cont:
-        if f == '\n' or f == '\t' or f == '(' or f == ')':
-            pass
-        else:
-            if estado == 0 and f != ' ':
-                temp += f
-                if f == '\"':
-                    estado = 1
-            elif estado == 1:
-                temp += f
-                if f == '\"':
-                    estado = 0
     
-    return temp
 
 ################################################################
 def imprimirelementos():
@@ -115,10 +102,24 @@ def imprimirelementos():
 
 ################################################################
 def analizar():
-    #Obtener Texto
-    txt = str(cuadrotexto.get("1.0",END))
+    #[ VALIDADORES ]
+    #Procesar texto
+    val1 = True
+    val2 = True
+
+
+    #Obtener Texto de la Ventana
+    try:
+        txt = str(cuadrotexto.get("1.0",END))
+    except Exception as e:
+        mensajee = "No se puedo convertir a texto"
+        nuevoerror("A00","analizar()",mensajee, e)
+        val1 = False
+    
     #Quita el salto de linea
-    txt = txt[0:len(txt) - 1]
+    if (val1):
+        txt = txt[0:len(txt) - 1]
+
     #Verificar si existe texto 
     errorvacio = False
     if len(txt) < 4:
@@ -127,60 +128,79 @@ def analizar():
             texte = "El texto a analizar esta Vacio"
             nuevoerror("A01","analizar()",texte,"0")
             imprimirerrores()
+            val1 = False
         
     #[1.0 ANALIZAR ]
-    if errorvacio == False:
-
-        #[ A2.0 Quitar Espacios y Saltos de linea ]
-        contador= -1
-        texttemp = ''
-        #Banderas flag1 = Deshabilita quitar espacios
-        flag1 = False
-        for g in txt:
-            contador += 1
-            #A3.0 Evaluar si hay comillas (Texto importante)
-            if g == '"' or g == "'": 
-                #A3.1 deshabilitar quitar espacios
-                if flag1 == False:
-                    flag1 = True
-                else:
-                    flag1 = False
-                #A3.3 agrega comilla
-                texttemp += g
-            else:
-                if flag1 == False:
-                    #A2.2 Evaluar si es un salto de Linea
-                    if g == "\n" or g == "\r" or g == " ": 
-                        pass
+    if errorvacio == False and val1 == True:
+        ################################################################
+        try:
+            #[ A2.0 QUITAR ESPACIOS Y SALTOS DE LINEA ]
+            try:
+                contador= -1
+                texttemp = ''
+                #Banderas flag1 = Deshabilita quitar espacios
+                flag1 = False
+                for g in txt:
+                    contador += 1
+                    #A3.0 Evaluar si hay comillas (Texto importante)
+                    if g == '"' or g == "'": 
+                        #A3.1 deshabilitar quitar espacios
+                        if flag1 == False:
+                            flag1 = True
+                        else:
+                            flag1 = False
+                        #A3.3 agrega comilla
+                        texttemp += g
                     else:
-                        texttemp += g.lower()
-                else:
-                    #A3.2 agregar al texto con Espacios
-                    texttemp += g
-            
-        #A2.2 imprimir
-        print("------------ [ Texto A procesar ] -------------") 
-        textosinespacios = texttemp
-        print(textosinespacios)
-        print("-----------------------------------------------") 
+                        if flag1 == False:
+                            #A2.2 Evaluar si es un salto de Linea
+                            if g == "\n" or g == "\r" or g == " ": 
+                                pass
+                            else:
+                                texttemp += g.lower()
+                        else:
+                            #A3.2 agregar al texto con Espacios
+                            texttemp += g
+                    
+                #A2.2 imprimir
+                print("------------ [ Texto A procesar ] -------------") 
+                textosinespacios = texttemp
+                print(textosinespacios)
+                print("-----------------------------------------------") 
 
-        newtext = ''
-        #[ B1.0 Obtener Inicio Formulario "formulario~>>" ]
-        for g in range(0,len(textosinespacios)-13):
-            #1.1 texto a evaluar
-            textoAevaluar = textosinespacios[g:g+13]
-            #1.2 Encontrar texto
-            if textoAevaluar == "formulario~>>": 
-                newtext = textosinespacios[g+13:len(textosinespacios)]
-                break
-        if(newtext == "" or newtext == " "):
-            mensajee = "No se encontro el Inicio del Formulario"
-            print(mensajee)
-        else:
-            #B imprimir
-            print("----- [ Inicio Formulario ] ------") 
-            print(newtext)
-            print("---------------------------------")
+            except Exception as e:
+                mensajee = "Error al evaluar texto no se pudieron quitar los espacios"
+                nuevoerror("A03","analizar()",mensajee,e)
+                val2 = False
+
+            ################################################################
+            #[ B1.0 Obtener Inicio Formulario "formulario~>>" ]
+            if (val2):
+                try:
+                    newtext = ''
+                    for g in range(0,len(textosinespacios)-13):
+                        #B1.1 texto a evaluar
+                        textoAevaluar = textosinespacios[g:g+13]
+                        #B1.2 Encontrar texto
+                        if textoAevaluar == "formulario~>>": 
+                            newtext = textosinespacios[g+13:len(textosinespacios)]
+                            break
+                    #B1.1.1 No se encontro el texto a buscar
+                    if(newtext == "" or newtext == " "):
+                        mensajee = "No se puedo obtener el inicio del formulario. (No se encontro la palabra clave 'formulario~>>'"
+                        nuevoerror("A04","analizar()",mensajee,e)
+                    else:
+                        #B1.3 imprimir
+                        print("----- [ Inicio Formulario ] ------") 
+                        print(newtext)
+                        print("---------------------------------")
+                except Exception as e:
+                    mensajee = "Error al buscar la palabra clave 'formulario~>>'"
+                    nuevoerror("A05","analizar()",mensajee,e)
+            ################################################################
+        except Exception as e:
+            texte = "Error al analizar texto."
+            nuevoerror("A02","analizar()",texte,e)
 
         # #GUARDAR ELEMENTOS
         # global ListadoElementos
@@ -189,6 +209,9 @@ def analizar():
         # #Imprimir Elementos Guardados
         # imprimirelementos()
         
+
+        # [Z1.0 IMPRIMIR ERRORES ]
+        imprimirerrores()
 
 ################################################################
 #Mensaje Bienvenida
@@ -203,8 +226,6 @@ if __name__ == "__main__":
     #[ Mensaje Consola ]
     Iniciomensaje()
 
-    #[Imprimir Errores]
-    imprimirerrores()
 
     
 
