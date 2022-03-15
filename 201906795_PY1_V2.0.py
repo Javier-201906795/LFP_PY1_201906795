@@ -186,15 +186,18 @@ def analizar():
                         if textoAevaluar == "formulario~>>": 
                             newtext = textosinespacios[g+13:len(textosinespacios)]
                             break
+                    
+                    print("newTEXT:",newtext)
                     #B1.1.1 No se encontro el texto a buscar
                     if(newtext == "" or newtext == " "):
                         mensajee = "No se puedo obtener el inicio del formulario. (No se encontro la palabra clave 'formulario~>>'"
-                        nuevoerror("A04","analizar()",mensajee,e)
+                        nuevoerror("A04","analizar()",mensajee,"0")
                     else:
                         #B1.3 imprimir
                         print("----- [ Inicio Formulario ] ------") 
                         print(newtext)
                         print("---------------------------------")
+                    print("paso aqui3")
                 except Exception as e:
                     mensajee = "Error al buscar la palabra clave 'formulario~>>'"
                     nuevoerror("A05","analizar()",mensajee,e)
