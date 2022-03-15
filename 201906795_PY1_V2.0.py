@@ -130,36 +130,57 @@ def analizar():
         
     #[1.0 ANALIZAR ]
     if errorvacio == False:
-        #[2.0 Quitar Espacios y Saltos de linea ]
+
+        #[ A2.0 Quitar Espacios y Saltos de linea ]
         contador= -1
         texttemp = ''
         #Banderas flag1 = Deshabilita quitar espacios
         flag1 = False
         for g in txt:
             contador += 1
-            #3.0 Evaluar si hay comillas (Texto importante)
+            #A3.0 Evaluar si hay comillas (Texto importante)
             if g == '"' or g == "'": 
-                #3.1 deshabilitar quitar espacios
+                #A3.1 deshabilitar quitar espacios
                 if flag1 == False:
                     flag1 = True
                 else:
                     flag1 = False
-                #3.3 agrega comilla
+                #A3.3 agrega comilla
                 texttemp += g
             else:
                 if flag1 == False:
-                    #2.2 Evaluar si es un salto de Linea
+                    #A2.2 Evaluar si es un salto de Linea
                     if g == "\n" or g == "\r" or g == " ": 
                         pass
                     else:
-                        texttemp += g
+                        texttemp += g.lower()
                 else:
-                    #3.2 agregar al texto con Espacios
+                    #A3.2 agregar al texto con Espacios
                     texttemp += g
-
             
-        #2.2 imprimir
-        print("Texttemp: ",texttemp) 
+        #A2.2 imprimir
+        print("------------ [ Texto A procesar ] -------------") 
+        textosinespacios = texttemp
+        print(textosinespacios)
+        print("-----------------------------------------------") 
+
+        newtext = ''
+        #[ B1.0 Obtener Inicio Formulario "formulario~>>" ]
+        for g in range(0,len(textosinespacios)-13):
+            #1.1 texto a evaluar
+            textoAevaluar = textosinespacios[g:g+13]
+            #1.2 Encontrar texto
+            if textoAevaluar == "formulario~>>": 
+                newtext = textosinespacios[g+13:len(textosinespacios)]
+                break
+        if(newtext == "" or newtext == " "):
+            mensajee = "No se encontro el Inicio del Formulario"
+            print(mensajee)
+        else:
+            #B imprimir
+            print("----- [ Inicio Formulario ] ------") 
+            print(newtext)
+            print("---------------------------------")
 
         # #GUARDAR ELEMENTOS
         # global ListadoElementos
