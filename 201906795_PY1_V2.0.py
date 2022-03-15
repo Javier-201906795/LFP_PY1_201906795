@@ -82,10 +82,11 @@ def abrirarchivoform():
 
             return text
     
-    except IndexError as e:
+    except Exception as e:
         mensajeer = "Error al cargar el archivo .form"
         nuevoerror("B01", "abrirarchivoform()",mensajeer,e)
         print("Error al abrir el archivo")
+        imprimirerrores()
 
 
     
