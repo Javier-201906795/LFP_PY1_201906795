@@ -186,8 +186,6 @@ def analizar():
                         if textoAevaluar == "formulario~>>": 
                             newtext = textosinespacios[g+13:len(textosinespacios)]
                             break
-                    
-                    print("newTEXT:",newtext)
                     #B1.1.1 No se encontro el texto a buscar
                     if(newtext == "" or newtext == " "):
                         mensajee = "No se puedo obtener el inicio del formulario. (No se encontro la palabra clave 'formulario~>>'"
@@ -197,11 +195,106 @@ def analizar():
                         print("----- [ Inicio Formulario ] ------") 
                         print(newtext)
                         print("---------------------------------")
-                    print("paso aqui3")
                 except Exception as e:
                     mensajee = "Error al buscar la palabra clave 'formulario~>>'"
                     nuevoerror("A05","analizar()",mensajee,e)
+
+                #B1.4 Guardar Texto
+                if newtext == " " or newtext == "":
+                    textolimpio = textosinespacios
+                else:
+                    textolimpio = newtext
             ################################################################
+            #[C1.0 Encontrar "[<"]
+            if (val2):
+                newtext = ''
+                try:
+                    largotextoabuscar = 2
+                    for g in range(0,len(textolimpio)-largotextoabuscar):
+                        #C1.1 texto a evaluar
+                        textoAevaluar = textolimpio[g:g+largotextoabuscar]
+                        #C1.2 Encontrar texto
+                        if textoAevaluar == "[<": 
+                            newtext = textolimpio[g+largotextoabuscar:len(textolimpio)]
+                            break
+                    
+                    # print("newTEXT:",newtext)
+                    #C1.1.1 No se encontro el texto a buscar
+                    if(newtext == "" or newtext == " "):
+                        mensajee = "No se puedo obtener el inicio del formulario. (No se encontro la palabra clave '[<'"
+                        nuevoerror("A04.1","analizar()",mensajee,"0")
+                except Exception as e:
+                    mensajee = "Error al buscar la palabra clave '[<'"
+                    nuevoerror("A06","analizar()",mensajee,e)
+            ################################################################
+            #[D1.0 Encontrar Elementos "<" y ">"]
+            if (val2):
+                val3=True
+                
+                try:
+                    while(True):
+                        inicio = -1
+                        fin = -1
+                        #Encontrar "<"
+                        newtext = ''
+                        textoabuscar1 = "<t"
+                        cont = -1
+                        for g in range(0,len(textolimpio)-len(textoabuscar1)):
+                            cont +=1
+                            #1.1 texto a evaluar
+                            textoAevaluar = textolimpio[g:g+len(textoabuscar1)]
+                            #1.2 Encontrar texto
+                            if textoAevaluar == textoabuscar1: 
+                                #1.2.1 Guardar posicion
+                                inicio = cont
+                                break
+                        
+
+                        #e1.1.1 No se encontro el texto a buscar salir de bucle
+                        if(inicio == -1 ):
+                            val3= False
+                            break
+
+                        ####################
+                        #2.1 Encontrar ">"
+                        textoabuscar1 = ">"
+                        if(val3):
+                            cont2 = 0
+                            for g in range(0,len(textolimpio)-len(textoabuscar1)):
+                                cont2 +=1
+                                #1.1 texto a evaluar
+                                textoAevaluar = textolimpio[g:g+len(textoabuscar1)]
+                                #1.2 Encontrar texto
+                                if textoAevaluar == textoabuscar1:
+                                    #1.2.1 Guardar posicion 
+                                    fin = cont2
+                                    break
+
+                        #e1.1.1 No se encontro el texto a buscar
+                        if(fin == -1):
+                            mensajee = "No se encontro la palabra clave: '" + str(textoabuscar1) + "'."
+                            nuevoerror("A07.1","analizar()",mensajee,"0")
+                            val3 = False
+                        else:
+                            #1.5 Guardar Elemento
+                            nuevoelemento = textolimpio[inicio:fin]
+                            global ListadoElementos
+                            ListadoElementos.append(nuevoelemento)
+                            #1.5.1 imprimir
+                            print("Elemento: ")
+                            print(nuevoelemento)
+
+                        # Nuevo Texto
+                        textolimpio = textolimpio[fin:len(textolimpio)]
+                    print(textolimpio)
+
+                except Exception as e:
+                    mensajee = "Error al buscar la palabra clave: '" + str(textoabuscar1) + "'."
+                    nuevoerror("A07","analizar()",mensajee,e)
+
+
+
+
         except Exception as e:
             texte = "Error al analizar texto."
             nuevoerror("A02","analizar()",texte,e)
@@ -213,9 +306,13 @@ def analizar():
         # #Imprimir Elementos Guardados
         # imprimirelementos()
         
+        # [Imprimir Elementos]
+        imprimirelementos()
 
         # [Z1.0 IMPRIMIR ERRORES ]
         imprimirerrores()
+
+
 
 ################################################################
 #Mensaje Bienvenida
