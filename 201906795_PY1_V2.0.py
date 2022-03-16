@@ -10,7 +10,7 @@ from Errores import Errores
 Textform = "N/A"
 TextVacioVentana = ""
 ListaErrores = []
-ListadoElementos = []
+ListadoElementos1 = []
 
 
 
@@ -257,15 +257,17 @@ def analizar():
 
                         ####################
                         #2.1 Encontrar ">"
-                        textoabuscar1 = ">"
+                        textoabuscar1 = ">,"
+                        textoabuscar2 = ">]"
                         if(val3):
                             cont2 = 0
-                            for g in range(0,len(textolimpio)-len(textoabuscar1)):
+                            for g in range(0,len(textolimpio)-(len(textoabuscar1)-1)):
                                 cont2 +=1
                                 #1.1 texto a evaluar
                                 textoAevaluar = textolimpio[g:g+len(textoabuscar1)]
+                                print("texto a evaluar:",textoAevaluar)
                                 #1.2 Encontrar texto
-                                if textoAevaluar == textoabuscar1:
+                                if textoAevaluar == textoabuscar1 or textoAevaluar == textoabuscar2:
                                     #1.2.1 Guardar posicion 
                                     fin = cont2
                                     break
@@ -277,12 +279,9 @@ def analizar():
                             val3 = False
                         else:
                             #1.5 Guardar Elemento
-                            nuevoelemento = textolimpio[inicio:fin]
-                            global ListadoElementos
-                            ListadoElementos.append(nuevoelemento)
-                            #1.5.1 imprimir
-                            print("Elemento: ")
-                            print(nuevoelemento)
+                            nuevoelemento = textolimpio[inicio + 1:fin - 1]
+                            global ListadoElementos1
+                            ListadoElementos1.append(nuevoelemento)
 
                         # Nuevo Texto
                         textolimpio = textolimpio[fin:len(textolimpio)]
@@ -306,7 +305,7 @@ def analizar():
         # #Imprimir Elementos Guardados
         # imprimirelementos()
         
-        # [Imprimir Elementos]
+        # [X1.0Imprimir Elementos]
         imprimirelementos()
 
         # [Z1.0 IMPRIMIR ERRORES ]
