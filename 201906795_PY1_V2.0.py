@@ -94,7 +94,7 @@ def abrirarchivoform():
 ################################################################
 def imprimirelementos():
     print("°°°°°°°[ Elementos ] °°°°°°°°")
-    for g in ListadoElementos:
+    for g in ListadoElementos1:
         print(g)
     print("°°°°°°°°°°°°°°°°°°°°°°°°°°°°°\n")
 #/////////////////////////////////////////////////////////////////
@@ -265,7 +265,7 @@ def analizar():
                                 cont2 +=1
                                 #1.1 texto a evaluar
                                 textoAevaluar = textolimpio[g:g+len(textoabuscar1)]
-                                print("texto a evaluar:",textoAevaluar)
+                                # print("texto a evaluar:",textoAevaluar)
                                 #1.2 Encontrar texto
                                 if textoAevaluar == textoabuscar1 or textoAevaluar == textoabuscar2:
                                     #1.2.1 Guardar posicion 
