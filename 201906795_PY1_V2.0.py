@@ -98,10 +98,14 @@ def abrirarchivoform():
 
 ################################################################
 def imprimirelementos():
-    print("°°°°°°°[ Elementos ] °°°°°°°°")
+    print("°°°°°°°[ Elementos Lista1 - Texto ] °°°°°°°°")
     for g in ListadoElementos1:
         print(g)
-    print("°°°°°°°°°°°°°°°°°°°°°°°°°°°°°\n")
+    print("°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°\n")
+    print("°°°°°°°[ Elementos Lista2 - Segmentados ] °°°°°°°°")
+    for h in ListadoElementos2:
+        print(h.imprimir())
+    print("°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°\n")
 #/////////////////////////////////////////////////////////////////
 
 #/////////////////////////////////////////////////////////////////
@@ -306,11 +310,12 @@ def analizar():
             #F 0.1 Valuar si hay elementos a evaluar
             if len(ListadoElementos1) > 1:
                 for elemento in ListadoElementos1:
-                    #F 1.-1 Crear Elemento para guardarlo en el listado 
+                    #[ F 0.2 CREAR ELEMETNO ]
                     newelemento = Elementos()
-                    val4=True
+
                     ##########################
-                    #[F 1.0 Encontra tipo]
+                    # [F1.1 -- TIPO -- ]
+                    val4=True
                     inicio = -1
                     fin = -1
                     newtext = ''
@@ -363,8 +368,6 @@ def analizar():
                         else:
                             try:
                                 Gtipo = elemento[inicio:fin]
-                                print("---[Tipo]--")
-                                print(elemento[inicio:fin])
                                 #3.5 Guardar Elemento
                                 print(newelemento.imprimir())
                                 newelemento.settipo(Gtipo)
@@ -372,6 +375,12 @@ def analizar():
                             except Exception as e:
                                 texte = "Error al guardar tipo."
                                 nuevoerror("A08.1","analizar()",texte,e)
+                    
+                    ###############
+                    #[ GUARDAR ELEMENTOS EN LISTADO 2 ]
+                    global ListadoElementos2
+                    ListadoElementos2.append(newelemento)
+                    ###############
 
             ################################################################
         except Exception as e:

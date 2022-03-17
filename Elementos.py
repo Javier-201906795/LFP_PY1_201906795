@@ -1,19 +1,13 @@
 class Elementos:
 
-    tipo = "N/A"
-    valor = "N/A"
-    fondo = "N/A"
-    valores = "N/A"
-    evento = "N/A"
-    obs = "N/A"
 
     def __init__(self):
-        tipo = "N/A"
-        valor = "N/A"
-        fondo = "N/A"
-        valores = "N/A"
-        evento = "N/A"
-        obs = "N/A"
+        self.tipo = "N/A"
+        self.valor = "N/A"
+        self.fondo = "N/A"
+        self.valores = "N/A"
+        self.evento = "N/A"
+        self.obs = "N/A"
     
     #### [ GET ] ####
 
@@ -64,5 +58,5 @@ class Elementos:
     #### [ Imprimir ] ####
 
     def imprimir(self):
-        resumen = {"tipo": self.tipo, "valor": self.valor, "fondo": self.fondo, "valores": self.valores, "evento": self.evento, "obs": self.obs}
+        resumen = {"tipo": str(self.tipo), "valor": self.valor, "fondo": self.fondo, "valores": self.valores, "evento": self.evento, "obs": self.obs}
         return resumen
