@@ -760,32 +760,67 @@ def analizar():
                                     fin = fin + inicio -1
                                     Gvalores = elemento[inicio:fin]
                                     #[3.0 Procesar valores]
+                                    Tvalores = Gvalores
+                                    cont =0
                                     #3.0.1 Convertir texto a una lista
+                                    Listavalores = []
                                     try:
-                                        inicio2 = -1
-                                        fin2 = -1
-                                        newtext = ''
-                                        textoabuscar1 = ','
-                                        textoabuscar2 = ","
-                                        cont = -1
-                                        for g in range(0,len(Gvalores)-len(textoabuscar1)):
-                                            cont +=1
-                                            #3.1 texto a evaluar
-                                            textoAevaluar = Gvalores[g:g+len(textoabuscar1)]
-                                            # print(cont, " - ", textoAevaluar)
-                                            #3.2 Encontrar texto
-                                            if textoAevaluar == textoabuscar1 or textoAevaluar == textoabuscar2: 
-                                                #3.2.1 Guardar posicion
-                                                fin2 = cont + len(textoabuscar1) - 1
+                                        #3.0.2 Evaluar texto
+                                        for j in Gvalores:
+                                            inicio2 = -1
+                                            fin2 = -1
+                                            newtext = ''
+                                            textoabuscar1 = ','
+                                            textoabuscar2 = ","
+                                            cont = -1
+                                            for g in range(0,len(Tvalores)-len(textoabuscar1)):
+                                                cont +=1
+                                                #3.1 texto a evaluar
+                                                textoAevaluar = Tvalores[g:g+len(textoabuscar1)]
+                                                # print(cont, " - ", textoAevaluar)
+                                                #3.2 Encontrar texto
+                                                if textoAevaluar == textoabuscar1 or textoAevaluar == textoabuscar2: 
+                                                    #3.2.1 Guardar posicion
+                                                    fin2 = cont + len(textoabuscar1) - 1
+                                                    break
+
+                                            #valor 1
+                                            elementovalor = Tvalores[0:fin2]
+                                            
+                                            #3.3 quitar valor encontrado
+                                            fin2 = fin2 + 1
+                                            Tvalores = Tvalores[fin2:len(Tvalores)]
+                                            print("Tvalores:",Tvalores)
+                                            
+
+                                            # print("R:",elementovalor)
+                                            # print("Tvalores:",Tvalores)
+                                            # print("fin2:",fin2)
+
+                                            #3.4.1 Fin del bucle Listado
+                                            #si no encuentra ,
+                                            if (fin2 == 0):
+                                                print("Fin")
+                                                #3.4.1 ultimo valor diferente por la comilla al final
+                                                elementovalor = Tvalores[0:len(Tvalores)]
+                                                print("elementovalor",elementovalor)
+                                                #3.4.2 Guardar en listado
+                                                Listavalores.append(elementovalor)
                                                 break
 
-                                        #primer valor
-                                        print("1:",Gvalores[0:fin2])
+                                            #3.4.0 Guardar en listado
+                                            Listavalores.append(elementovalor)
+
+                                            
+
                                     except Exception as e:
                                         texte = "Error al crear listado con los valores."
                                         nuevoerror("A13.3","analizar()",texte,e)
 
                                     #[ 3.5 GUARDAR VALORES ]
+                                    for g in Listavalores:
+                                        print(g)
+
                                     newelemento.setvalores(Gvalores)
                                     # print(">>>----[ Resultado ]----")
                                     # print(newelemento.valores)
