@@ -378,9 +378,9 @@ def analizar():
                     #########################
                     # [G1.1 -- Valor -- ]
                     try:
-                        print(">-----[Texto a evaluar]---" )
-                        print(elemento)
-                        print(">-------------------------")
+                        # print(">-----[Texto a evaluar]---" )
+                        # print(elemento)
+                        # print(">-------------------------")
 
                         val4=True
                         inicio = -1
@@ -407,9 +407,9 @@ def analizar():
                         else:
                             # Guardar Elemento solo comillas
                             temptext = elemento[inicio:len(elemento)]
-                            print(">>--- [Nuevo Texto] --")
-                            print(temptext)
-                            print(">>-----")
+                            # print(">>--- [Nuevo Texto] --")
+                            # print(temptext)
+                            # print(">>-----")
 
                         ########
                         #2.1 Encontrar 
@@ -437,29 +437,34 @@ def analizar():
                             else:
                                 try:
                                     fin = fin + inicio -1
-                                    print(elemento)
-                                    print("inicio:",inicio)
-                                    print("fin",fin)
-                                    print("len:",len(elemento))
-                                    print("Valor:",elemento[inicio:fin])
                                     Gvalor = elemento[inicio:fin]
+                                    # print(Gvalor)
                                     #[ 3.5 GUARDAR VALOR ]
                                     newelemento.setvalor(Gvalor)
-                                    print(">>>----[ Resultado ]----")
-                                    print(newelemento.valor)
-                                    print(">>>---------------------")
-                                    print(newelemento.valor)
+                                    # print(">>>----[ Resultado ]----")
+                                    # print(newelemento.valor)
+                                    # print(">>>---------------------")
+                                    #[ 4.0 Guardar Nuevo Elemento (Texto Lista1)]
+                                    elemento = elemento[fin+2:len(elemento)]
+                                    # print(elemento)
                                 except Exception as e:
                                     texte = "Error al guardar tipo."
                                     nuevoerror("A09.1","analizar()",texte,e)
                     except Exception as e:
                         texte = "Error al encontrar tipo."
                         nuevoerror("A09","analizar()",texte,e)
+
+                    ############################
+                    ############################
+                    print("##### [ Elemento a Evaluar ] ####")
+                    print(elemento)
                     
+                    ############################
                     ############################
                     #[ GUARDAR ELEMENTOS EN LISTADO 2 ]
                     global ListadoElementos2
                     ListadoElementos2.append(newelemento)
+                    ############################
                     ############################
 
             ################################################################
