@@ -378,7 +378,10 @@ def analizar():
                     #########################
                     # [G1.1 -- Valor -- ]
                     try:
+                        print(">-----[Texto a evaluar]---" )
                         print(elemento)
+                        print(">-------------------------")
+
                         val4=True
                         inicio = -1
                         fin = -1
@@ -397,12 +400,16 @@ def analizar():
                                 inicio = cont + len(textoabuscar1)
                                 break
                         
+
                         #e1.1.1 No se encontro el texto No tiene "valor"
                         if(inicio == -1 ):
                             val4 = False
                         else:
                             # Guardar Elemento solo comillas
                             temptext = elemento[inicio:len(elemento)]
+                            print(">>--- [Nuevo Texto] --")
+                            print(temptext)
+                            print(">>-----")
 
                         ########
                         #2.1 Encontrar 
@@ -410,15 +417,15 @@ def analizar():
                         textoabuscar2 = '"'
                         if(val4):
                             cont2 = 0
-                            for g in range(0,len(temptext)-(len(textoabuscar1)-1)):
+                            for g in range(0,len(temptext)):
                                 cont2 +=1
                                 #2.1 texto a evaluar
                                 textoAevaluar = temptext[g:g+len(textoabuscar1)]
-                                # print(cont, " - ", textoAevaluar)
+                                # print(cont2, " - ", textoAevaluar)
                                 #2.2 Encontrar texto
                                 if textoAevaluar == textoabuscar1 or textoAevaluar == textoabuscar2:
                                     #2.2.1 Guardar posicion 
-                                    fin = len(temptext) + cont2 - 2
+                                    fin = cont2 
                                     break  
                                     
                             
@@ -429,11 +436,18 @@ def analizar():
                                 nuevoerror("A09.2","analizar()",mensajee,"0")
                             else:
                                 try:
-                                    print("incio:",inicio,"\n","fin:",fin)
+                                    fin = fin + inicio -1
+                                    print(elemento)
+                                    print("inicio:",inicio)
+                                    print("fin",fin)
+                                    print("len:",len(elemento))
+                                    print("Valor:",elemento[inicio:fin])
                                     Gvalor = elemento[inicio:fin]
-                                    print(Gvalor)
                                     #[ 3.5 GUARDAR VALOR ]
                                     newelemento.setvalor(Gvalor)
+                                    print(">>>----[ Resultado ]----")
+                                    print(newelemento.valor)
+                                    print(">>>---------------------")
                                     print(newelemento.valor)
                                 except Exception as e:
                                     texte = "Error al guardar tipo."
