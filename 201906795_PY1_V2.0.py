@@ -451,7 +451,7 @@ def analizar():
                                     texte = "Error al guardar tipo."
                                     nuevoerror("A09.1","analizar()",texte,e)
                     except Exception as e:
-                        texte = "Error al encontrar tipo."
+                        texte = "Error al encontrar valor."
                         nuevoerror("A09","analizar()",texte,e)
 
                     #########################
@@ -513,7 +513,7 @@ def analizar():
                             #e2.1.1 No se encontro el texto a buscar
                             if(fin == -1):
                                 mensajee = "No se encontro la palabra clave: '" + str(textoabuscar1) + "'."
-                                nuevoerror("A09.2","analizar()",mensajee,"0")
+                                nuevoerror("A10.2","analizar()",mensajee,"0")
                             else:
                                 try:
                                     fin = fin + inicio -1
@@ -529,12 +529,250 @@ def analizar():
                                     # print(elemento)
                                 except Exception as e:
                                     texte = "Error al guardar tipo."
-                                    nuevoerror("A09.1","analizar()",texte,e)
+                                    nuevoerror("A10.1","analizar()",texte,e)
                     except Exception as e:
-                        texte = "Error al encontrar tipo."
-                        nuevoerror("A09","analizar()",texte,e)
+                        texte = "Error al encontrar fondo."
+                        nuevoerror("A10","analizar()",texte,e)
 
+                    #########################
+                    #########################
+                    # [H1.1 -- Nombre -- ]
+                    try:
+                        # print(">-----[Texto a evaluar]---" )
+                        # print(elemento)
+                        # print(">-------------------------")
+
+                        val4=True
+                        inicio = -1
+                        fin = -1
+                        newtext = ''
+                        textoabuscar1 = 'nombre:"'
+                        textoabuscar2 = "nombre:'"
+                        cont = -1
+                        for g in range(0,len(elemento)-len(textoabuscar1)):
+                            cont +=1
+                            #1.1 texto a evaluar
+                            textoAevaluar = elemento[g:g+len(textoabuscar1)]
+                            # print(cont, " - ", textoAevaluar)
+                            #1.2 Encontrar texto
+                            if textoAevaluar == textoabuscar1 or textoAevaluar == textoabuscar2: 
+                                #1.2.1 Guardar posicion
+                                inicio = cont + len(textoabuscar1)
+                                break
+                        
+
+                        #e1.1.1 No se encontro el texto No tiene "valor"
+                        if(inicio == -1 ):
+                            val4 = False
+                        else:
+                            # Guardar Elemento solo comillas
+                            temptext = elemento[inicio:len(elemento)]
+                            # print(">>--- [Nuevo Texto] --")
+                            # print(temptext)
+                            # print(">>-----")
+
+                        ########
+                        #2.1 Encontrar 
+                        textoabuscar1 = "'"
+                        textoabuscar2 = '"'
+                        if(val4):
+                            cont2 = 0
+                            for g in range(0,len(temptext)):
+                                cont2 +=1
+                                #2.1 texto a evaluar
+                                textoAevaluar = temptext[g:g+len(textoabuscar1)]
+                                # print(cont2, " - ", textoAevaluar)
+                                #2.2 Encontrar texto
+                                if textoAevaluar == textoabuscar1 or textoAevaluar == textoabuscar2:
+                                    #2.2.1 Guardar posicion 
+                                    fin = cont2 
+                                    break  
+                                    
+                            
+
+                            #e2.1.1 No se encontro el texto a buscar
+                            if(fin == -1):
+                                mensajee = "No se encontro la palabra clave: '" + str(textoabuscar1) + "'."
+                                nuevoerror("A11.2","analizar()",mensajee,"0")
+                            else:
+                                try:
+                                    fin = fin + inicio -1
+                                    Gnombre = elemento[inicio:fin]
+                                    # print(Gnombre)
+                                    #[ 3.5 GUARDAR VALOR ]
+                                    newelemento.setnombre(Gnombre)
+                                    # print(">>>----[ Resultado ]----")
+                                    # print(newelemento.valor)
+                                    # print(">>>---------------------")
+                                    #[ 4.0 Guardar Nuevo Elemento (Texto Lista1)]
+                                    elemento = elemento[fin+2:len(elemento)]
+                                    # print(elemento)
+                                except Exception as e:
+                                    texte = "Error al guardar tipo."
+                                    nuevoerror("A11.1","analizar()",texte,e)
+                    except Exception as e:
+                        texte = "Error al encontrar nombre."
+                        nuevoerror("A11","analizar()",texte,e)
+
+                    #########################
+                    #########################
+                    # [J1.1 -- evento -- ]
+                    try:
+                        # print(">-----[Texto a evaluar]---" )
+                        # print(elemento)
+                        # print(">-------------------------")
+
+                        val4=True
+                        inicio = -1
+                        fin = -1
+                        newtext = ''
+                        textoabuscar1 = 'evento:<'
+                        textoabuscar2 = "evento:<"
+                        cont = -1
+                        for g in range(0,len(elemento)-len(textoabuscar1)):
+                            cont +=1
+                            #1.1 texto a evaluar
+                            textoAevaluar = elemento[g:g+len(textoabuscar1)]
+                            # print(cont, " - ", textoAevaluar)
+                            #1.2 Encontrar texto
+                            if textoAevaluar == textoabuscar1 or textoAevaluar == textoabuscar2: 
+                                #1.2.1 Guardar posicion
+                                inicio = cont + len(textoabuscar1)
+                                break
+                        
+
+                        #e1.1.1 No se encontro el texto No tiene "valor"
+                        if(inicio == -1 ):
+                            val4 = False
+                        else:
+                            # Guardar Elemento solo comillas
+                            temptext = elemento[inicio:len(elemento)]
+                            # print(">>--- [Nuevo Texto] --")
+                            # print(temptext)
+                            # print(">>-----")
+
+                        ########
+                        #2.1 Encontrar 
+                        textoabuscar1 = ">"
+                        textoabuscar2 = '>'
+                        if(val4):
+                            cont2 = 0
+                            for g in range(0,len(temptext)):
+                                cont2 +=1
+                                #2.1 texto a evaluar
+                                textoAevaluar = temptext[g:g+len(textoabuscar1)]
+                                # print(cont2, " - ", textoAevaluar)
+                                #2.2 Encontrar texto
+                                if textoAevaluar == textoabuscar1 or textoAevaluar == textoabuscar2:
+                                    #2.2.1 Guardar posicion 
+                                    fin = cont2 
+                                    break  
+                                    
+                            
+
+                            #e2.1.1 No se encontro el texto a buscar
+                            if(fin == -1):
+                                mensajee = "No se encontro la palabra clave: '" + str(textoabuscar1) + "'."
+                                nuevoerror("A12.2","analizar()",mensajee,"0")
+                            else:
+                                try:
+                                    fin = fin + inicio -1
+                                    Gevento = elemento[inicio:fin]
+                                    # print(Gnombre)
+                                    #[ 3.5 GUARDAR VALOR ]
+                                    newelemento.setevento(Gevento)
+                                    # print(">>>----[ Resultado ]----")
+                                    # print(newelemento.valor)
+                                    # print(">>>---------------------")
+                                    #[ 4.0 Guardar Nuevo Elemento (Texto Lista1)]
+                                    elemento = elemento[fin+2:len(elemento)]
+                                    # print(elemento)
+                                except Exception as e:
+                                    texte = "Error al guardar tipo."
+                                    nuevoerror("A12.1","analizar()",texte,e)
+                    except Exception as e:
+                        texte = "Error al encontrar evento."
+                        nuevoerror("A12","analizar()",texte,e)
                     
+                    #########################
+                    #########################
+                    # [K1.1 -- valores -- ]
+                    try:
+                        # print(">-----[Texto a evaluar]---" )
+                        # print(elemento)
+                        # print(">-------------------------")
+
+                        val4=True
+                        inicio = -1
+                        fin = -1
+                        newtext = ''
+                        textoabuscar1 = 'valores:['
+                        textoabuscar2 = "valores:{"
+                        cont = -1
+                        for g in range(0,len(elemento)-len(textoabuscar1)):
+                            cont +=1
+                            #1.1 texto a evaluar
+                            textoAevaluar = elemento[g:g+len(textoabuscar1)]
+                            # print(cont, " - ", textoAevaluar)
+                            #1.2 Encontrar texto
+                            if textoAevaluar == textoabuscar1 or textoAevaluar == textoabuscar2: 
+                                #1.2.1 Guardar posicion
+                                inicio = cont + len(textoabuscar1)
+                                break
+                        
+                        
+                        
+                        #e1.1.1 No se encontro el texto No tiene "valor"
+                        if(inicio == -1 ):
+                            val4 = False
+                        else:
+                            # Guardar Elemento solo comillas
+                            temptext = elemento[inicio:len(elemento)]
+                            # print(">>--- [Nuevo Texto] --")
+                            # print(temptext)
+                            # print(">>-----")
+
+                        ########
+                        #2.1 Encontrar 
+                        textoabuscar1 = "]"
+                        textoabuscar2 = '}'
+                        if(val4):
+                            cont2 = 0
+                            for g in range(0,len(temptext)):
+                                cont2 +=1
+                                #2.1 texto a evaluar
+                                textoAevaluar = temptext[g:g+len(textoabuscar1)]
+                                # print(cont2, " - ", textoAevaluar)
+                                #2.2 Encontrar texto
+                                if textoAevaluar == textoabuscar1 or textoAevaluar == textoabuscar2:
+                                    #2.2.1 Guardar posicion 
+                                    fin = cont2 
+                                    break  
+                                    
+                            
+
+                            #e2.1.1 No se encontro el texto a buscar
+                            if(fin == -1):
+                                mensajee = "No se encontro la palabra clave: '" + str(textoabuscar1) + "'."
+                                nuevoerror("A13.2","analizar()",mensajee,"0")
+                            else:
+                                try:
+                                    fin = fin + inicio -1
+                                    Gvalores = elemento[inicio:fin]
+                                    #[ 3.5 GUARDAR VALOR ]
+                                    newelemento.setvalores(Gvalores)
+                                    # print(">>>----[ Resultado ]----")
+                                    # print(newelemento.valores)
+                                    # print(">>>---------------------")
+                                    #[ 4.0 Guardar Nuevo Elemento (Texto Lista1)]
+                                    elemento = elemento[fin+2:len(elemento)]
+                                    # print(elemento)
+                                except Exception as e:
+                                    texte = "Error al guardar tipo."
+                                    nuevoerror("A13.1","analizar()",texte,e)
+                    except Exception as e:
+                        texte = "Error al encontrar valores."
+                        nuevoerror("A13.1","analizar()",texte,e)
 
                     ############################
                     ############################

@@ -8,6 +8,7 @@ class Elementos:
         self.valores = "N/A"
         self.evento = "N/A"
         self.obs = "N/A"
+        self.nombre = "N/A"
     
     #### [ GET ] ####
 
@@ -28,6 +29,9 @@ class Elementos:
     
     def obs(self):
         return self.obs
+
+    def nombre(self):
+        return self.nombre
     
     #### [ SET ] ####
 
@@ -54,9 +58,13 @@ class Elementos:
     def setobs(self,obs):
         self.obs = obs  
         return "ok"
+
+    def setnombre(self,nombre):
+        self.nombre = nombre
+        return "ok"
     
     #### [ Imprimir ] ####
 
     def imprimir(self):
-        resumen = {"tipo": str(self.tipo), "valor": self.valor, "fondo": self.fondo, "valores": self.valores, "evento": self.evento, "obs": self.obs}
+        resumen = {"tipo": str(self.tipo), "valor": self.valor, "fondo": self.fondo, "valores": self.valores, "evento": self.evento,"nombre": self.nombre ,"obs": self.obs}
         return resumen
