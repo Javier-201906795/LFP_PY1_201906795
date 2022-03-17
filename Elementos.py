@@ -1,5 +1,12 @@
 class Elementos:
 
+    tipo = "N/A"
+    valor = "N/A"
+    fondo = "N/A"
+    valores = "N/A"
+    evento = "N/A"
+    obs = "N/A"
+
     def __init__(self):
         tipo = "N/A"
         valor = "N/A"

@@ -302,69 +302,76 @@ def analizar():
                     val2 = False
             
             ################################################################
-            # #[F Segmentar Elementos]
-            # print("°°°°°°°[ Elementos2 ] °°°°°°°°")
-            # for elemento in ListadoElementos1:
-            #     print(elemento)
-            # print("°°°°°°°°°°°°°°°°°°°°°°°°°°°°°\n")
-            # for elemento in ListadoElementos1:
-            #     print(elemento)
-                # #[F 1.0 Encontra tipo]
-                # inicio = -1
-                # fin = -1
-                # newtext = ''
-                # textoabuscar1 = 'tipo:"'
-                # textoabuscar2 = "tipo:'"
-                # cont = -1
-                # for g in range(0,len(elemento)-len(textoabuscar1)):
-                #     cont +=1
-                #     #1.1 texto a evaluar
-                #     textoAevaluar = elemento[g:g+len(textoabuscar1)]
-                #     print(cont, " - ", textoAevaluar)
-                #     #1.2 Encontrar texto
-                #     if textoAevaluar == textoabuscar1 or textoAevaluar == textoabuscar2: 
-                #         #1.2.1 Guardar posicion
-                #         inicio = cont
-                #         break
-                
-                
-                # #e1.1.1 No se encontro el texto a buscar salir de bucle
-                # if(inicio == -1 ):
-                #     mensajee = "Error al buscar la palabra clave: '" + str(textoabuscar1) + "', porfavor ingrese un tipo de elemento."
-                #     nuevoerror("A07.2","analizar()",mensajee,e)
-                #     val3 = False
+            #[F Segmentar Elementos]
+            #F 0.1 Valuar si hay elementos a evaluar
+            if len(ListadoElementos1) > 1:
+                for elemento in ListadoElementos1:
+                    #F 1.-1 Crear Elemento para guardarlo en el listado 
+                    newelemento = Elementos()
+                    val4=True
+                    ##########################
+                    #[F 1.0 Encontra tipo]
+                    inicio = -1
+                    fin = -1
+                    newtext = ''
+                    textoabuscar1 = 'tipo:"'
+                    textoabuscar2 = "tipo:'"
+                    cont = -1
+                    for g in range(0,len(elemento)-len(textoabuscar1)):
+                        cont +=1
+                        #1.1 texto a evaluar
+                        textoAevaluar = elemento[g:g+len(textoabuscar1)]
+                        # print(cont, " - ", textoAevaluar)
+                        #1.2 Encontrar texto
+                        if textoAevaluar == textoabuscar1 or textoAevaluar == textoabuscar2: 
+                            #1.2.1 Guardar posicion
+                            inicio = cont + len(textoabuscar1)
+                            break
+                    
+                    
+                    #e1.1.1 No se encontro el texto a buscar salir de bucle
+                    if(inicio == -1 ):
+                        mensajee = "Error al buscar la palabra clave: '" + str(textoabuscar1) + "', porfavor ingrese un tipo de elemento."
+                        nuevoerror("A07.2","analizar()",mensajee,e)
+                        val4 = False
 
-                # ####################
-                # #2.1 Encontrar 
-                # textoabuscar1 = "',"
-                # textoabuscar2 = '",'
-                # if(val3):
-                #     cont2 = 0
-                #     for g in range(0,len(elemento)-(len(textoabuscar1)-1)):
-                #         cont2 +=1
-                #         #2.1 texto a evaluar
-                #         textoAevaluar = elemento[g:g+len(textoabuscar1)]
-                #         print(cont, " - ", textoAevaluar)
-                #         #2.2 Encontrar texto
-                #         if textoAevaluar == textoabuscar1 or textoAevaluar == textoabuscar2:
-                #             #2.2.1 Guardar posicion 
-                #             fin = cont2
-                #             break  
+                    ####################
+                    #2.1 Encontrar 
+                    textoabuscar1 = "',"
+                    textoabuscar2 = '",'
+                    if(val4):
+                        cont2 = 0
+                        for g in range(0,len(elemento)-(len(textoabuscar1)-1)):
+                            cont2 +=1
+                            #2.1 texto a evaluar
+                            textoAevaluar = elemento[g:g+len(textoabuscar1)]
+                            # print(cont, " - ", textoAevaluar)
+                            #2.2 Encontrar texto
+                            if textoAevaluar == textoabuscar1 or textoAevaluar == textoabuscar2:
+                                #2.2.1 Guardar posicion 
+                                fin = cont2 - 1
+                                break  
+                                
+                        
 
-                #     #e2.1.1 No se encontro el texto a buscar
-                #     if(fin == -1):
-                #         mensajee = "No se encontro la palabra clave: '" + str(textoabuscar1) + "'."
-                #         nuevoerror("A07.2","analizar()",mensajee,"0")
-                #         val3 = False
-                #         val2 = False
-                #     else:
-                #         print("---[Tipo]--")
-                #         print(elemento[inicio:fin])
-                #         print("-----------")
-                #         #3.5 Guardar Elemento
-                #         # nuevoelemento = textolimpio[inicio + 1:fin - 1]
-                #         # global ListadoElementos1
-                #         # ListadoElementos1.append(nuevoelemento)
+                        #e2.1.1 No se encontro el texto a buscar
+                        if(fin == -1):
+                            mensajee = "No se encontro la palabra clave: '" + str(textoabuscar1) + "'."
+                            nuevoerror("A07.2","analizar()",mensajee,"0")
+                            val3 = False
+                            val2 = False
+                        else:
+                            try:
+                                Gtipo = elemento[inicio:fin]
+                                print("---[Tipo]--")
+                                print(elemento[inicio:fin])
+                                #3.5 Guardar Elemento
+                                print(newelemento.imprimir())
+                                newelemento.settipo(Gtipo)
+                                print(newelemento.tipo)
+                            except Exception as e:
+                                texte = "Error al guardar tipo."
+                                nuevoerror("A08.1","analizar()",texte,e)
 
             ################################################################
         except Exception as e:
