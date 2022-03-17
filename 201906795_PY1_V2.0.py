@@ -10,7 +10,9 @@ from Errores import Errores
 Textform = "N/A"
 TextVacioVentana = ""
 ListaErrores = []
+#Elementos en Texto
 ListadoElementos1 = []
+#Elementos dentro de una clase para facilitar su obtencion de datos
 
 
 
@@ -263,37 +265,84 @@ def analizar():
                             cont2 = 0
                             for g in range(0,len(textolimpio)-(len(textoabuscar1)-1)):
                                 cont2 +=1
-                                #1.1 texto a evaluar
+                                #2.1 texto a evaluar
                                 textoAevaluar = textolimpio[g:g+len(textoabuscar1)]
                                 # print("texto a evaluar:",textoAevaluar)
-                                #1.2 Encontrar texto
+                                #2.2 Encontrar texto
                                 if textoAevaluar == textoabuscar1 or textoAevaluar == textoabuscar2:
-                                    #1.2.1 Guardar posicion 
+                                    #2.2.1 Guardar posicion 
                                     fin = cont2
                                     break
 
-                        #e1.1.1 No se encontro el texto a buscar
+                        #e2.1.1 No se encontro el texto a buscar
                         if(fin == -1):
                             mensajee = "No se encontro la palabra clave: '" + str(textoabuscar1) + "'."
                             nuevoerror("A07.1","analizar()",mensajee,"0")
                             val3 = False
+                            val2 = False
                         else:
-                            #1.5 Guardar Elemento
+                            #3.5 Guardar Elemento
                             nuevoelemento = textolimpio[inicio + 1:fin - 1]
                             global ListadoElementos1
                             ListadoElementos1.append(nuevoelemento)
 
-                        # Nuevo Texto
+                        #4.1 Nuevo Texto
                         textolimpio = textolimpio[fin:len(textolimpio)]
+                    #4.1.1Imprimir Texto
                     print(textolimpio)
 
                 except Exception as e:
                     mensajee = "Error al buscar la palabra clave: '" + str(textoabuscar1) + "'."
                     nuevoerror("A07","analizar()",mensajee,e)
+                    val2 = False
+            
+            ################################################################
+            #[F Segmentar Elementos]
+            #[F 1.0 Encontra tipo]
+            if(val2):
+                inicio = -1
+                fin = -1
+                newtext = ''
+                textoabuscar1 = 'tipo:"'
+                textoabuscar2 = "tipo:'"
+                cont = -1
+                for g in range(0,len(textolimpio)-len(textoabuscar1)):
+                    cont +=1
+                    #1.1 texto a evaluar
+                    textoAevaluar = textolimpio[g:g+len(textoabuscar1)]
+                    #1.2 Encontrar texto
+                    if textoAevaluar == textoabuscar1 or textoAevaluar == textoabuscar2: 
+                        #1.2.1 Guardar posicion
+                        inicio = cont
+                        break
+                
+                
+                #e1.1.1 No se encontro el texto a buscar salir de bucle
+                if(inicio == -1 ):
+                    mensajee = "Error al buscar la palabra clave: '" + str(textoabuscar1) + "', porfavor ingrese un tipo de elemento."
+                    nuevoerror("A07.2","analizar()",mensajee,e)
+                    val3 = False
 
+                ####################
+                #2.1 Encontrar 
+                textoabuscar1 = "',"
+                textoabuscar2 = '",'
+                if(val3):
+                    cont2 = 0
+                    for g in range(0,len(textolimpio)-(len(textoabuscar1)-1)):
+                        cont2 +=1
+                        #2.1 texto a evaluar
+                        textoAevaluar = textolimpio[g:g+len(textoabuscar1)]
+                        # print("texto a evaluar:",textoAevaluar)
+                        #2.2 Encontrar texto
+                        if textoAevaluar == textoabuscar1 or textoAevaluar == textoabuscar2:
+                            #2.2.1 Guardar posicion 
+                            fin = cont2
+                            break  
 
+                
 
-
+            ################################################################
         except Exception as e:
             texte = "Error al analizar texto."
             nuevoerror("A02","analizar()",texte,e)
