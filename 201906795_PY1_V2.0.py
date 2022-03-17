@@ -454,6 +454,8 @@ def analizar():
                         texte = "Error al encontrar tipo."
                         nuevoerror("A09","analizar()",texte,e)
 
+                    
+
                     ############################
                     ############################
                     print("##### [ Elemento a Evaluar ] ####")
