@@ -528,7 +528,7 @@ def analizar():
                                     elemento = elemento[fin+2:len(elemento)]
                                     # print(elemento)
                                 except Exception as e:
-                                    texte = "Error al guardar tipo."
+                                    texte = "Error al guardar Fondo."
                                     nuevoerror("A10.1","analizar()",texte,e)
                     except Exception as e:
                         texte = "Error al encontrar fondo."
@@ -608,7 +608,7 @@ def analizar():
                                     elemento = elemento[fin+2:len(elemento)]
                                     # print(elemento)
                                 except Exception as e:
-                                    texte = "Error al guardar tipo."
+                                    texte = "Error al guardar Nombre."
                                     nuevoerror("A11.1","analizar()",texte,e)
                     except Exception as e:
                         texte = "Error al encontrar nombre."
@@ -688,7 +688,7 @@ def analizar():
                                     elemento = elemento[fin+2:len(elemento)]
                                     # print(elemento)
                                 except Exception as e:
-                                    texte = "Error al guardar tipo."
+                                    texte = "Error al guardar evento."
                                     nuevoerror("A12.1","analizar()",texte,e)
                     except Exception as e:
                         texte = "Error al encontrar evento."
@@ -759,7 +759,33 @@ def analizar():
                                 try:
                                     fin = fin + inicio -1
                                     Gvalores = elemento[inicio:fin]
-                                    #[ 3.5 GUARDAR VALOR ]
+                                    #[3.0 Procesar valores]
+                                    #3.0.1 Convertir texto a una lista
+                                    try:
+                                        inicio2 = -1
+                                        fin2 = -1
+                                        newtext = ''
+                                        textoabuscar1 = ','
+                                        textoabuscar2 = ","
+                                        cont = -1
+                                        for g in range(0,len(Gvalores)-len(textoabuscar1)):
+                                            cont +=1
+                                            #3.1 texto a evaluar
+                                            textoAevaluar = Gvalores[g:g+len(textoabuscar1)]
+                                            # print(cont, " - ", textoAevaluar)
+                                            #3.2 Encontrar texto
+                                            if textoAevaluar == textoabuscar1 or textoAevaluar == textoabuscar2: 
+                                                #3.2.1 Guardar posicion
+                                                fin2 = cont + len(textoabuscar1) - 1
+                                                break
+
+                                        #primer valor
+                                        print("1:",Gvalores[0:fin2])
+                                    except Exception as e:
+                                        texte = "Error al crear listado con los valores."
+                                        nuevoerror("A13.3","analizar()",texte,e)
+
+                                    #[ 3.5 GUARDAR VALORES ]
                                     newelemento.setvalores(Gvalores)
                                     # print(">>>----[ Resultado ]----")
                                     # print(newelemento.valores)
@@ -768,7 +794,7 @@ def analizar():
                                     elemento = elemento[fin+2:len(elemento)]
                                     # print(elemento)
                                 except Exception as e:
-                                    texte = "Error al guardar tipo."
+                                    texte = "Error al guardar valores."
                                     nuevoerror("A13.1","analizar()",texte,e)
                     except Exception as e:
                         texte = "Error al encontrar valores."
