@@ -790,7 +790,7 @@ def analizar():
                                             #3.3 quitar valor encontrado
                                             fin2 = fin2 + 1
                                             Tvalores = Tvalores[fin2:len(Tvalores)]
-                                            print("Tvalores:",Tvalores)
+                                            
                                             
 
                                             # print("R:",elementovalor)
@@ -800,10 +800,9 @@ def analizar():
                                             #3.4.1 Fin del bucle Listado
                                             #si no encuentra ,
                                             if (fin2 == 0):
-                                                print("Fin")
                                                 #3.4.1 ultimo valor diferente por la comilla al final
                                                 elementovalor = Tvalores[0:len(Tvalores)]
-                                                print("elementovalor",elementovalor)
+                                                # print("elementovalor",elementovalor)
                                                 #3.4.2 Guardar en listado
                                                 Listavalores.append(elementovalor)
                                                 break
@@ -818,12 +817,18 @@ def analizar():
                                         nuevoerror("A13.3","analizar()",texte,e)
 
                                     #[ 3.5 GUARDAR VALORES ]
-                                    for g in Listavalores:
-                                        print(g)
 
-                                    newelemento.setvalores(Gvalores)
+                                    #Imprimir listado valores
+                                    # for g in Listavalores:
+                                    #     print(g)
+
+                                    newelemento.setvalores(Listavalores)
                                     # print(">>>----[ Resultado ]----")
                                     # print(newelemento.valores)
+                                    # listatemp = newelemento.valores
+                                    # for h in listatemp:
+                                    #     print(h)
+                                    # print(listatemp[1])
                                     # print(">>>---------------------")
                                     #[ 4.0 Guardar Nuevo Elemento (Texto Lista1)]
                                     elemento = elemento[fin+2:len(elemento)]
