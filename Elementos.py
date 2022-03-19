@@ -2,13 +2,13 @@ class Elementos:
 
 
     def __init__(self):
-        self.tipo = "N/A"
-        self.valor = "N/A"
-        self.fondo = "N/A"
-        self.valores = "N/A"
-        self.evento = "N/A"
-        self.obs = "N/A"
-        self.nombre = "N/A"
+        self.tipo = "NA"
+        self.valor = "NA"
+        self.fondo = "NA"
+        self.valores = "NA"
+        self.evento = "NA"
+        self.obs = "NA"
+        self.nombre = "NA"
     
     #### [ GET ] ####
 

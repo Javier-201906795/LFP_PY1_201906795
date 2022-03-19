@@ -1,11 +1,8 @@
 //Obtener div donde se colocara los elementos del formulario
-divcontenido = document.getElementById("contenidoformulario");
-
-//----------------------------------------------------------------
+divcontenido = document.getElementById("contenidoformulario");//----------------------------------------------------------------
 //[L1.0 LABEL ]
-contenidoform = '<label class="mb-3"> VALOR </label>'
-
-
+contenidoform = '<label class="mb-3"> VALOR </label>'         
+        
 //----------------------------------------------------------------
 //[T1.0 TEXTO - INPUT ]
 contenidoform += '<div class="input-group input-group-sm mb-4">'+
@@ -15,9 +12,8 @@ contenidoform += '<div class="input-group input-group-sm mb-4">'+
 '<div class="col-md-7">'+
     '<input type="text" class="form-control col-sm-2" aria-label="Small" placeholder="FONDO" id="inputvalor" >'+
 '</div>'+
-'</div>'
-
-
+'</div>'         
+        
 //----------------------------------------------------------------
 //[R1.0 GRUPO RADIO - GRUPO INPUT ]
 contenidoform += '<div class="col-md-12 mb-4">'+
@@ -36,10 +32,8 @@ contenidoform += '<div class="col-md-12 mb-4">'+
     'Valores2'+
 '</label>'+
 '</div>'+
-'</div>'
-
-
-
+'</div>'         
+        
 //1.1 OBTENER INPUT - RADIO SELECCIONADO
 Nombre = document.getElementsByName('NOMBRE')
 
@@ -55,9 +49,8 @@ function obtenerradioNombre() {
         //3.1.2 Guarda su Valor
         return listadoNombre[i]
     }
-}
-
-
+}         
+        
 //----------------------------------------------------------------
 //[ S 1.0 GRUPO OPTION - SELECT ]
 contenidoform += '<div class="input-group mb-3">'+
@@ -71,19 +64,20 @@ contenidoform += '<div class="input-group mb-3">'+
     '<option value="Valores3">Valores3</option>'+
 '</select>'+
 '</div>'
-
+         
+        
 //3.1 Obtener opcion seleccionadas
 function obtenerSelectNombre(){
     selectNombre1 = document.getElementById("selectNombre")
     return selectNombre1.value
-}
-
+}         
+        
 //----------------------------------------------------------------
 //[B 1.0 BOTON - BUTTON | INFO]
 contenidoform += '<div class="row ">'+
     '<button type="button" class="btn btn-primary btn-lg col-md-2 mb-4" onclick="evento()">Iframe</button>'+
-'</div>'
-
+'</div>'         
+        
 //3.1 Evento
 function evento(){
     input1 = document.getElementById("inputvalor")
@@ -93,19 +87,19 @@ function evento(){
     console.log("select: "+obtenerSelectNombre())
     
 
-}
-
+}         
+        
 //----------------------------------------------------------------
 //[B 1.0 BOTON - BUTTON | IFRAME]
 contenidoform += '<div class="row ">'+
     '<button type="button" class="btn btn-secondary btn-lg col-md-2 mb-4" onclick="evento2()">Info</button>'+
-'</div>'
+'</div>'         
+        
 //3.1 Evento
 function evento2(){
     console.log(obtenerradioNombre())
     console.log(obtenerSelectNombre())
 
-}
-
-
+}         
+        
 divcontenido.innerHTML = contenidoform

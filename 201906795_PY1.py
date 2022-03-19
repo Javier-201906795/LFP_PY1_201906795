@@ -1,5 +1,6 @@
 #Librerias
 # from tkinter import filedialog, Tk, Label, Button, Entry, Menu, Text, Menubutton, PhotoImage, font
+from calendar import c
 from tkinter import *
 from tkinter import filedialog, font
 
@@ -870,7 +871,8 @@ def analizar():
         imprimirerrores()
 
         # [Z2.0 CREAR FORMULARIO]
-        crearformulario()
+        if len(ListadoElementos2) > 0:
+            crearformulario()
 
 
 
@@ -878,23 +880,27 @@ def analizar():
 #/////////////////////////////////////////////////////////////////
 ################################################################
 def crearformulario():
-    print("crear formulario")
+    print("creando formulario...")
 
-    #Crear JAVASCRIPT
+    #[A1.0 Crear JAVASCRIPT ] 
     try:
-        #Abre el archivo
+        #[1.2 Abre el archivo]
         f = open('formulario.js','w')
-        #[Nuevo contenido]
-        #Id del documento
+        #[2.0 Nuevo contenido]
         contenido = """//Obtener div donde se colocara los elementos del formulario
-divcontenido = document.getElementById("contenidoformulario");
+divcontenido = document.getElementById("contenidoformulario");"""
 
-//----------------------------------------------------------------
+
+        contenido += """//----------------------------------------------------------------
 //[L1.0 LABEL ]
-contenidoform = '<label class="mb-3"> VALOR </label>'
+contenidoform = '<label class="mb-3"> VALOR </label>'"""
+
+        contenido +="""         
+        
+"""
 
 
-//----------------------------------------------------------------
+        contenido += """//----------------------------------------------------------------
 //[T1.0 TEXTO - INPUT ]
 contenidoform += '<div class="input-group input-group-sm mb-4">'+
 '<div class="input-group-prepend col-md-2">'+
@@ -903,10 +909,13 @@ contenidoform += '<div class="input-group input-group-sm mb-4">'+
 '<div class="col-md-7">'+
     '<input type="text" class="form-control col-sm-2" aria-label="Small" placeholder="FONDO" id="inputvalor" >'+
 '</div>'+
-'</div>'
+'</div>'"""
 
+        contenido +="""         
+        
+"""
 
-//----------------------------------------------------------------
+        contenido +="""//----------------------------------------------------------------
 //[R1.0 GRUPO RADIO - GRUPO INPUT ]
 contenidoform += '<div class="col-md-12 mb-4">'+
 '<div class="col-md-2 mb-0 input-group-sm">'+
@@ -924,11 +933,13 @@ contenidoform += '<div class="col-md-12 mb-4">'+
     'Valores2'+
 '</label>'+
 '</div>'+
-'</div>'
+'</div>'"""
 
+        contenido +="""         
+        
+"""
 
-
-//1.1 OBTENER INPUT - RADIO SELECCIONADO
+        contenido += """//1.1 OBTENER INPUT - RADIO SELECCIONADO
 Nombre = document.getElementsByName('NOMBRE')
 
 function obtenerradioNombre() {
@@ -943,10 +954,13 @@ function obtenerradioNombre() {
         //3.1.2 Guarda su Valor
         return listadoNombre[i]
     }
-}
+}"""
 
+        contenido +="""         
+        
+"""
 
-//----------------------------------------------------------------
+        contenido += """//----------------------------------------------------------------
 //[ S 1.0 GRUPO OPTION - SELECT ]
 contenidoform += '<div class="input-group mb-3">'+
 '<div class="input-group-prepend col-md-2">'+
@@ -959,20 +973,33 @@ contenidoform += '<div class="input-group mb-3">'+
     '<option value="Valores3">Valores3</option>'+
 '</select>'+
 '</div>'
+"""
 
-//3.1 Obtener opcion seleccionadas
+        contenido +="""         
+        
+"""
+
+        contenido += """//3.1 Obtener opcion seleccionadas
 function obtenerSelectNombre(){
     selectNombre1 = document.getElementById("selectNombre")
     return selectNombre1.value
-}
+}"""
 
-//----------------------------------------------------------------
+        contenido +="""         
+        
+"""
+
+        contenido +="""//----------------------------------------------------------------
 //[B 1.0 BOTON - BUTTON | INFO]
 contenidoform += '<div class="row ">'+
     '<button type="button" class="btn btn-primary btn-lg col-md-2 mb-4" onclick="evento()">Iframe</button>'+
-'</div>'
+'</div>'"""
 
-//3.1 Evento
+        contenido +="""         
+        
+"""
+
+        contenido +="""//3.1 Evento
 function evento(){
     input1 = document.getElementById("inputvalor")
     console.log("input:" + input1.value)
@@ -981,27 +1008,43 @@ function evento(){
     console.log("select: "+obtenerSelectNombre())
     
 
-}
+}"""
 
-//----------------------------------------------------------------
+        contenido +="""         
+        
+"""
+
+        contenido +="""//----------------------------------------------------------------
 //[B 1.0 BOTON - BUTTON | IFRAME]
 contenidoform += '<div class="row ">'+
     '<button type="button" class="btn btn-secondary btn-lg col-md-2 mb-4" onclick="evento2()">Info</button>'+
-'</div>'
-//3.1 Evento
+'</div>'"""
+
+        contenido +="""         
+        
+"""
+
+        contenido +="""//3.1 Evento
 function evento2(){
     console.log(obtenerradioNombre())
     console.log(obtenerSelectNombre())
 
-}
+}"""
+
+        contenido +="""         
+        
+"""
 
 
-divcontenido.innerHTML = contenidoform"""
+        contenido +="""divcontenido.innerHTML = contenidoform"""
+
+
 
         f.write(contenido)
         f.close()
-    except:
+    except Exception as e:
         print("Error al modicar archivo javascript")
+        print(e)
 
     mensaje = "Se creo el Formulario con exito"
     return mensaje
