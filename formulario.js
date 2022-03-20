@@ -35,18 +35,20 @@ contenidoform += '<div class="col-md-12 mb-4">'+
 Nombre = document.getElementsByName("inputradiomario")         
         
 function obtenerinputradiomario() {//2.1 Listado con los Valores
-    
     listadoNombre = ['mario1','mario2']
+    
 
     //3.1 Obtiene los input radio 
     var ele = document.getElementsByName("inputradiomario");
     //3.1.1 Evalua uno por uno para encontrar con el seleccionado
-    for(i = 0; i < ele.length; i++) {
+    for(i = 0; i < (ele.length); i++) {
+        
         if(ele[i].checked)
         //3.1.2 Guarda su Valor
-        alert(i + listadoNombre[1])
-        return listadoNombre[i]
+        console.log(listadoNombre[i])
+        
     }
+    return listadoNombre[i]
 }         
         
          

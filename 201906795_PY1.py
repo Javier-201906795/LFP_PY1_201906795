@@ -967,6 +967,7 @@ Nombre = document.getElementsByName("""+'"'+'inputradio'+str(Nombre)+'"'+""")"""
     for(i = 0; i < ele.length; i++) {
         if(ele[i].checked)
         //3.1.2 Guarda su Valor
+        alert(listadoNombre[i])
         return listadoNombre[i]
     }
 }"""
