@@ -49,6 +49,40 @@ function obtenerinputradiomario() {//2.1 Listado con los Valores
 }         
         
 //----------------------------------------------------------------
+//[R1.0 GRUPO RADIO - GRUPO INPUT ]
+contenidoform += '<div class="col-md-12 mb-4">'+
+'<div class="col-md-2 mb-0 input-group-sm">'+
+    '<span class="input-group-text">mario</span>'+
+'</div>'+'<div class="form-check mb-0">'+
+    '<input class="form-check-input" type="radio"  name="inputradiomario">'+
+'<label class="form-check-label">'+
+    'mario1'+
+'</label>'+
+'</div>'+'<div class="form-check mb-0">'+
+    '<input class="form-check-input" type="radio"  name="inputradiomario">'+
+'<label class="form-check-label">'+
+    'mario2'+
+'</label>'+
+'</div>'+'</div>'         
+        
+//Z1.1 OBTENER INPUT - RADIO SELECCIONADO
+Nombre = document.getElementsByName("inputradiomario")         
+        
+function obtenerinputradiomario() {//2.1 Listado con los Valores
+    listadoNombre = ['mario1','mario2']
+
+    //3.1 Obtiene los input radio 
+    var ele = document.getElementsByName("inputradiomario");
+    //3.1.1 Evalua uno por uno para encontrar con el seleccionado
+    for(i = 0; i < ele.length; i++) {
+        if(ele[i].checked)
+        //3.1.2 Guarda su Valor
+        alert(listadoNombre[i])
+    }
+    return listadoNombre[i]
+}         
+        
+//----------------------------------------------------------------
 //[ S 1.0 GRUPO OPTION - SELECT ]
 contenidoform += '<div class="input-group mb-3">'+
 '<div class="input-group-prepend col-md-2">'+
