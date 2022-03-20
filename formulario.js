@@ -10,7 +10,7 @@ contenidoform += '<div class="input-group input-group-sm mb-4">'+
     '<span class="input-group-text">mario</span>'+
 '</div>'+
 '<div class="col-md-7">'+
-    '<input type="text" class="form-control col-sm-2" aria-label="Small" placeholder="fondomario" id="inputfondomario">'+
+    '<input type="text" class="form-control col-sm-2" aria-label="Small" placeholder="fondomario" id="inputtextmario">'+
 '</div>'+
 '</div>'         
         
@@ -18,23 +18,18 @@ contenidoform += '<div class="input-group input-group-sm mb-4">'+
 //[R1.0 GRUPO RADIO - GRUPO INPUT ]
 contenidoform += '<div class="col-md-12 mb-4">'+
 '<div class="col-md-2 mb-0 input-group-sm">'+
-    '<span class="input-group-text">NOMBRE</span>'+
-'</div>'+
-'<div class="form-check mb-0">'+
-    '<input class="form-check-input" type="radio"  name="NOMBRE">'+
+    '<span class="input-group-text">mario</span>'+
+'</div>'+'<div class="form-check mb-0">'+
+    '<input class="form-check-input" type="radio"  name="inputradiomario">'+
 '<label class="form-check-label">'+
-    'Valores1'+
+    'mario1'+
 '</label>'+
-'</div>'+
-'<div class="form-check mb-0">'+
-    '<input class="form-check-input" type="radio"  name="NOMBRE">'+
+'</div>'+'<div class="form-check mb-0">'+
+    '<input class="form-check-input" type="radio"  name="inputradiomario">'+
 '<label class="form-check-label">'+
-    'Valores2'+
+    'mario2'+
 '</label>'+
-'</div>'+
-'</div>'         
-        
-//1.1 OBTENER INPUT - RADIO SELECCIONADO
+'</div>'+'</div>'//1.1 OBTENER INPUT - RADIO SELECCIONADO
 Nombre = document.getElementsByName('NOMBRE')
 
 function obtenerradioNombre() {
@@ -50,6 +45,8 @@ function obtenerradioNombre() {
         return listadoNombre[i]
     }
 }         
+        
+         
         
 //----------------------------------------------------------------
 //[ S 1.0 GRUPO OPTION - SELECT ]

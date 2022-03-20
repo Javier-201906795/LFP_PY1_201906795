@@ -889,7 +889,7 @@ contenidoform = '<label class="mb-3">"""+ str(Valor) +"""</label>'"""
 """
     return contenido
 #/////////////////////////////////////////////////////////////////
-#Funcion para crear labels
+#Funcion para crear INPUT TEXT
 def Finputtext(Valor, Fondo):
     contenido = """//----------------------------------------------------------------
 //[T1.0 TEXTO - INPUT ]
@@ -898,7 +898,7 @@ contenidoform += '<div class="input-group input-group-sm mb-4">'+
     '<span class="input-group-text">""" + str(Valor) + """</span>'+
 '</div>'+
 '<div class="col-md-7">'+
-    '<input type="text" class="form-control col-sm-2" aria-label="Small" placeholder=""" + '"' + str(Fondo) + '"' + """ id="""+ '"' +'input'+ str(Fondo) + '"' +""">'+
+    '<input type="text" class="form-control col-sm-2" aria-label="Small" placeholder=""" + '"' + str(Fondo) + '"' + """ id="""+ '"' +'inputtext'+ str(Valor) + '"' +""">'+
 '</div>'+
 '</div>'"""
 
@@ -908,6 +908,55 @@ contenidoform += '<div class="input-group input-group-sm mb-4">'+
 
     return contenido 
 
+#/////////////////////////////////////////////////////////////////
+#Funcion para crear INPUT RADIO
+def Finputradio(Nombre,Valores):
+    contenido ="""//----------------------------------------------------------------
+//[R1.0 GRUPO RADIO - GRUPO INPUT ]
+contenidoform += '<div class="col-md-12 mb-4">'+
+'<div class="col-md-2 mb-0 input-group-sm">'+
+    '<span class="input-group-text">"""+str(Nombre)+"""</span>'+
+'</div>'+"""
+
+    #Validar si hay Elementos en la lista
+    if (len(Valores) > 0):
+        cont = 0
+        for g in Valores:
+            cont += 1
+            contenido += """'<div class="form-check mb-0">'+
+    '<input class="form-check-input" type="radio"  name="""+'"'+'inputradio'+str(Nombre)+'"'+""">'+
+'<label class="form-check-label">'+
+    '""" +  g  + """'+
+'</label>'+
+'</div>'+"""
+
+        contenido +="""'</div>'"""
+
+
+    #Funcion para obtener datos
+    contenido += """//1.1 OBTENER INPUT - RADIO SELECCIONADO
+Nombre = document.getElementsByName('NOMBRE')
+
+function obtenerradioNombre() {
+    //2.1 Listado con los Valores
+    listadoNombre = ["valor1","valor2","valor3"]
+
+    //3.1 Obtiene los input radio 
+    var ele = document.getElementsByName('NOMBRE');
+    //3.1.1 Evalua uno por uno para encontrar con el seleccionado
+    for(i = 0; i < ele.length; i++) {
+        if(ele[i].checked)
+        //3.1.2 Guarda su Valor
+        return listadoNombre[i]
+    }
+}"""
+
+
+    contenido +="""         
+        
+"""
+
+    return contenido
 
 ################################################################
 #/////////////////////////////////////////////////////////////////
@@ -929,49 +978,15 @@ divcontenido = document.getElementById("contenidoformulario");"""
         #[ CREAR INPUT TEXT ]
         contenido += Finputtext("mario","fondomario")
 
-        #[ C ]
+
+        #[ CREAR INPUT RADIO ]
+        lista1 = ["mario1","mario2"]
+        contenido += Finputradio("mario",lista1)
         
 
-        contenido +="""//----------------------------------------------------------------
-//[R1.0 GRUPO RADIO - GRUPO INPUT ]
-contenidoform += '<div class="col-md-12 mb-4">'+
-'<div class="col-md-2 mb-0 input-group-sm">'+
-    '<span class="input-group-text">NOMBRE</span>'+
-'</div>'+
-'<div class="form-check mb-0">'+
-    '<input class="form-check-input" type="radio"  name="NOMBRE">'+
-'<label class="form-check-label">'+
-    'Valores1'+
-'</label>'+
-'</div>'+
-'<div class="form-check mb-0">'+
-    '<input class="form-check-input" type="radio"  name="NOMBRE">'+
-'<label class="form-check-label">'+
-    'Valores2'+
-'</label>'+
-'</div>'+
-'</div>'"""
-
-        contenido +="""         
         
-"""
 
-        contenido += """//1.1 OBTENER INPUT - RADIO SELECCIONADO
-Nombre = document.getElementsByName('NOMBRE')
-
-function obtenerradioNombre() {
-    //2.1 Listado con los Valores
-    listadoNombre = ["valor1","valor2","valor3"]
-
-    //3.1 Obtiene los input radio 
-    var ele = document.getElementsByName('NOMBRE');
-    //3.1.1 Evalua uno por uno para encontrar con el seleccionado
-    for(i = 0; i < ele.length; i++) {
-        if(ele[i].checked)
-        //3.1.2 Guarda su Valor
-        return listadoNombre[i]
-    }
-}"""
+        
 
         contenido +="""         
         
