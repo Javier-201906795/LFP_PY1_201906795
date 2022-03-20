@@ -35,7 +35,8 @@ contenidoform += '<div class="col-md-12 mb-4">'+
 Nombre = document.getElementsByName("inputradiomario")         
         
 function obtenerinputradiomario() {//2.1 Listado con los Valores
-    listadoNombre = [mario1,mario2]
+    
+    listadoNombre = ['mario1','mario2']
 
     //3.1 Obtiene los input radio 
     var ele = document.getElementsByName("inputradiomario");
@@ -43,6 +44,7 @@ function obtenerinputradiomario() {//2.1 Listado con los Valores
     for(i = 0; i < ele.length; i++) {
         if(ele[i].checked)
         //3.1.2 Guarda su Valor
+        alert(i + listadoNombre[1])
         return listadoNombre[i]
     }
 }         
@@ -73,7 +75,7 @@ function obtenerSelectNombre(){
 //----------------------------------------------------------------
 //[B 1.0 BOTON - BUTTON | INFO]
 contenidoform += '<div class="row ">'+
-    '<button type="button" class="btn btn-primary btn-lg col-md-2 mb-4" onclick="inputradiomario()">Iframe</button>'+
+    '<button type="button" class="btn btn-primary btn-lg col-md-2 mb-4" onclick="obtenerinputradiomario()">Iframe</button>'+
 '</div>'         
         
 //3.1 Evento

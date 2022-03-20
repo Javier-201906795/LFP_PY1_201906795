@@ -941,7 +941,7 @@ contenidoform += '<div class="col-md-12 mb-4">'+
     cont1 = 0
     for g in Valores:
         cont1 += 1 
-        txtlist += g 
+        txtlist += "'" + g +"'"
         if cont1 < len(Valores):
             txtlist += ","
 
@@ -1045,7 +1045,7 @@ function obtenerSelectNombre(){
         contenido +="""//----------------------------------------------------------------
 //[B 1.0 BOTON - BUTTON | INFO]
 contenidoform += '<div class="row ">'+
-    '<button type="button" class="btn btn-primary btn-lg col-md-2 mb-4" onclick="inputradiomario()">Iframe</button>'+
+    '<button type="button" class="btn btn-primary btn-lg col-md-2 mb-4" onclick="obtenerinputradiomario()">Iframe</button>'+
 '</div>'"""
 
         contenido +="""         
