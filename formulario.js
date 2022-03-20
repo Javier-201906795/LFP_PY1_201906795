@@ -52,14 +52,10 @@ function obtenerinputradiomario() {//2.1 Listado con los Valores
 //[ S 1.0 GRUPO OPTION - SELECT ]
 contenidoform += '<div class="input-group mb-3">'+
 '<div class="input-group-prepend col-md-2">'+
-    '<label class="input-group-text" >Nombre</label>'+
+    '<label class="input-group-text" >mario</label>'+
 '</div>'+
 '<select class="custom-select col-md-3" id="selectNombre">'+
-    '<option value="0" selected>Selecciona una opcion</option>'+
-    '<option value="Valores1">Valores1</option>'+
-    '<option value="Valores2">Valores2</option>'+
-    '<option value="Valores3">Valores3</option>'+
-'</select>'+
+    '<option value="0" selected>Selecciona una opcion</option>'+'<option value="Valores1">mario1</option>'+'<option value="Valores1">mario2</option>'+'</select>'+
 '</div>'
          
         

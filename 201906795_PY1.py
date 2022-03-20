@@ -937,17 +937,7 @@ contenidoform += '<div class="col-md-12 mb-4">'+
         
 """
     #Convertir listado a texto
-    txtlist = "["
-    cont1 = 0
-    for g in Valores:
-        cont1 += 1 
-        txtlist += "'" + g +"'"
-        if cont1 < len(Valores):
-            txtlist += ","
-
-    txtlist += "]"
-
-    #print(txtlist)
+    txtlist = Gconvertirlistadoatexto(Valores)
 
 
     #Funcion para obtener datos
@@ -982,18 +972,21 @@ Nombre = document.getElementsByName("""+'"'+'inputradio'+str(Nombre)+'"'+""")"""
 ################################################################
 #/////////////////////////////////////////////////////////////////
 def Finputselect(Nombre,Valores):
+
     contenido = """//----------------------------------------------------------------
 //[ S 1.0 GRUPO OPTION - SELECT ]
 contenidoform += '<div class="input-group mb-3">'+
 '<div class="input-group-prepend col-md-2">'+
-    '<label class="input-group-text" >Nombre</label>'+
+    '<label class="input-group-text" >"""+ str(Nombre)+"""</label>'+
 '</div>'+
 '<select class="custom-select col-md-3" id="selectNombre">'+
-    '<option value="0" selected>Selecciona una opcion</option>'+
-    '<option value="Valores1">Valores1</option>'+
-    '<option value="Valores2">Valores2</option>'+
-    '<option value="Valores3">Valores3</option>'+
-'</select>'+
+    '<option value="0" selected>Selecciona una opcion</option>'+"""
+    
+    #listado Valores
+    for g in Valores:
+        contenido += """'<option value="Valores1">"""+ str(g) +"""</option>'+"""
+
+    contenido += """'</select>'+
 '</div>'
 """
 
@@ -1004,6 +997,23 @@ contenidoform += '<div class="input-group mb-3">'+
     return str(contenido)
 
 ################################################################
+
+def Gconvertirlistadoatexto(Listado):
+    #Convertir listado a texto
+    txtlist = "["
+    cont1 = 0
+    for g in Listado:
+        cont1 += 1 
+        txtlist += "'" + g +"'"
+        if cont1 < len(Listado):
+            txtlist += ","
+
+    txtlist += "]"
+
+    print(txtlist)
+    return str(txtlist)
+
+
 #/////////////////////////////////////////////////////////////////
 ################################################################
 def crearformulario():
