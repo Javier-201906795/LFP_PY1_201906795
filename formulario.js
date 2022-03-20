@@ -66,33 +66,18 @@ function obtenerselectmario(){
 }         
         
 //----------------------------------------------------------------
-//[B 1.0 BOTON - BUTTON | INFO]
+//[B 1.0 BOTON - BUTTON | ENTRADA]
 contenidoform += '<div class="row ">'+
-    '<button type="button" class="btn btn-primary btn-lg col-md-2 mb-4" onclick="obtenerinputradiomario()">Iframe</button>'+
+    '<button type="button" class="btn btn-primary btn-lg col-md-2 mb-4" onclick="entradabotonmario()">boton mario</button>'+
 '</div>'         
+            
+    //3.1 Evento
+    function entradabotonmario(){
+        alert("entrada")
         
-//3.1 Evento
-function evento(){
-    input1 = document.getElementById("inputvalor")
-    console.log("input:" + input1.value)
-    
-    console.log("radio:" + obtenerradioNombre())
-    console.log("select: "+obtenerSelectNombre())
-    
 
-}         
-        
-//----------------------------------------------------------------
-//[B 1.0 BOTON - BUTTON | IFRAME]
-contenidoform += '<div class="row ">'+
-    '<button type="button" class="btn btn-secondary btn-lg col-md-2 mb-4" onclick="evento2()">Info</button>'+
-'</div>'         
-        
-//3.1 Evento
-function evento2(){
-    console.log(obtenerradioNombre())
-    console.log(obtenerSelectNombre())
-
-}         
+    }         
+            
+             
         
 divcontenido.innerHTML = contenidoform

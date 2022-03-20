@@ -17,6 +17,8 @@ ListaErrores = []
 ListadoElementos1 = []
 #Elementos dentro de una clase para facilitar su obtencion de datos
 ListadoElementos2 = []
+#ListaVariablesGet para el formulario
+Listadovarget = []
 
 
 
@@ -1000,9 +1002,81 @@ function obtenerselect"""+str(Nombre)+"""(){
     return selectNombre1.value
 }"""
 
+    contenido +="""         
+        
+"""
     return str(contenido)
 
+#/////////////////////////////////////////////////////////////////
 ################################################################
+def Fboton(Valor, Evento):
+    variableValor = ""
+    #Quitar Espacios
+    variableValor = Gquitarespacios(Valor)
+    print(variableValor)
+
+    #Evaluar que tipo de boton es entrada o info
+    if (Evento == 'entrada' or Evento == 'Entrada'):
+        contenido ="""//----------------------------------------------------------------
+//[B 1.0 BOTON - BUTTON | ENTRADA]
+contenidoform += '<div class="row ">'+
+    '<button type="button" class="btn btn-primary btn-lg col-md-2 mb-4" onclick="entrada"""+str(variableValor)+"""()">"""+str(Valor)+"""</button>'+
+'</div>'"""
+
+        contenido +="""         
+            
+    """
+
+        contenido +="""//3.1 Evento
+    function entrada"""+str(variableValor)+"""(){
+        alert("entrada")
+        
+
+    }"""
+
+        contenido +="""         
+            
+    """
+    else:
+        contenido ="""//----------------------------------------------------------------
+//[B 1.0 BOTON - BUTTON | INFO]
+contenidoform += '<div class="row ">'+
+    '<button type="button" class="btn btn-secondary btn-lg col-md-2 mb-4" onclick="info"""+str(variableValor)+"""()">"""+str(Valor)+"""</button>'+
+'</div>'"""
+
+        contenido +="""         
+            
+    """
+
+        contenido +="""//3.1 Evento
+    function info"""+str(variableValor)+"""(){
+        alert("info")
+        
+
+    }"""
+
+        contenido +="""         
+            
+    """
+        
+        
+
+    contenido +="""         
+        
+"""
+
+    return contenido
+
+################################################################
+def Gquitarespacios(Texto):
+    texttemp = ""
+    for g in Texto:
+        #A2.2 Evaluar si es un salto de Linea
+        if g == "\n" or g == "\r" or g == " ": 
+            pass
+        else:
+            texttemp += g.lower()
+    return texttemp
 
 def Gconvertirlistadoatexto(Listado):
     #Convertir listado a texto
@@ -1050,60 +1124,14 @@ divcontenido = document.getElementById("contenidoformulario");"""
         lista2 = ["mario1","mario2"]
         contenido += Finputselect("mario",lista2)
 
-        
-        
+        #[ CREAR BOTON ]
+        contenido += Fboton("boton mario","entrada")
 
         
 
-        contenido +="""         
+       
+
         
-"""
-
-        contenido +="""//----------------------------------------------------------------
-//[B 1.0 BOTON - BUTTON | INFO]
-contenidoform += '<div class="row ">'+
-    '<button type="button" class="btn btn-primary btn-lg col-md-2 mb-4" onclick="obtenerinputradiomario()">Iframe</button>'+
-'</div>'"""
-
-        contenido +="""         
-        
-"""
-
-        contenido +="""//3.1 Evento
-function evento(){
-    input1 = document.getElementById("inputvalor")
-    console.log("input:" + input1.value)
-    
-    console.log("radio:" + obtenerradioNombre())
-    console.log("select: "+obtenerSelectNombre())
-    
-
-}"""
-
-        contenido +="""         
-        
-"""
-
-        contenido +="""//----------------------------------------------------------------
-//[B 1.0 BOTON - BUTTON | IFRAME]
-contenidoform += '<div class="row ">'+
-    '<button type="button" class="btn btn-secondary btn-lg col-md-2 mb-4" onclick="evento2()">Info</button>'+
-'</div>'"""
-
-        contenido +="""         
-        
-"""
-
-        contenido +="""//3.1 Evento
-function evento2(){
-    console.log(obtenerradioNombre())
-    console.log(obtenerSelectNombre())
-
-}"""
-
-        contenido +="""         
-        
-"""
 
 
         contenido +="""divcontenido.innerHTML = contenidoform"""
