@@ -920,35 +920,38 @@ contenidoform += '<div class="col-md-12 mb-4">'+
     '<span class="input-group-text">"""+str(Nombre)+"""</span>'+
 '</div>'+"""
 
-    #Validar si hay Elementos en la lista
+    #[A 1.0 Validar si hay Elementos en la lista]
     if (len(Valores) > 0):
         cont = 0
         for g in Valores:
             cont += 1
+            # 1.1 Agregar al listado de elementos radio
             contenido += """'<div class="form-check mb-0">'+
     '<input class="form-check-input" type="radio"  name="""+'"'+'inputradio'+str(Nombre)+'"'+""">'+
 '<label class="form-check-label">'+
     '""" +  g  + """'+
 '</label>'+
 '</div>'+"""
-        #Fin For
+        #2.1 Fin For cierrre del div
         contenido +="""'</div>'"""
 
     #Espacio
     contenido +="""         
         
 """
-    #Convertir listado a texto
+    #3.1 Convertir listado a texto
     txtlist = Gconvertirlistadoatexto(Valores)
 
 
-    #Funcion para obtener datos
+    #[ 4.0 Funcion para obtener datos ]
     contenido += """//Z1.1 OBTENER INPUT - RADIO SELECCIONADO
 Nombre = document.getElementsByName("""+'"'+'inputradio'+str(Nombre)+'"'+""")"""
 
+    #Espacio
     contenido +="""         
         
 """
+    #4.1 crea la funcion 
     contenido += """function obtener"""+'inputradio'+str(Nombre)+"""() {"""
     contenido += """//2.1 Listado con los Valores
     listadoNombre = """+ txtlist +"""
@@ -965,10 +968,14 @@ Nombre = document.getElementsByName("""+'"'+'inputradio'+str(Nombre)+'"'+""")"""
 }"""
     
 
-
+    #Espacio
     contenido +="""         
         
 """
+    #4.2 Guarda el nombre la funcion
+    global Listadovarget
+    nombreVar = "inputradio"+ str(Nombre) + "()"
+    Listadovarget.append(nombreVar)
 
     return contenido
 ################################################################
@@ -1127,11 +1134,10 @@ divcontenido = document.getElementById("contenidoformulario");"""
         #[ CREAR BOTON ]
         contenido += Fboton("boton mario","entrada")
 
+        #IMPRIME NOMBRE FUNCIONES
+        print(Listadovarget)
         
 
-       
-
-        
 
 
         contenido +="""divcontenido.innerHTML = contenidoform"""
