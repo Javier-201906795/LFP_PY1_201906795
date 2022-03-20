@@ -54,14 +54,14 @@ contenidoform += '<div class="input-group mb-3">'+
 '<div class="input-group-prepend col-md-2">'+
     '<label class="input-group-text" >mario</label>'+
 '</div>'+
-'<select class="custom-select col-md-3" id="selectNombre">'+
+'<select class="custom-select col-md-3" id="selectmario">'+
     '<option value="0" selected>Selecciona una opcion</option>'+'<option value="Valores1">mario1</option>'+'<option value="Valores1">mario2</option>'+'</select>'+
 '</div>'
          
         
 //3.1 Obtener opcion seleccionadas
-function obtenerSelectNombre(){
-    selectNombre1 = document.getElementById("selectNombre")
+function obtenerselectmario(){
+    selectNombre1 = document.getElementById("selectmario")
     return selectNombre1.value
 }         
         

@@ -979,7 +979,7 @@ contenidoform += '<div class="input-group mb-3">'+
 '<div class="input-group-prepend col-md-2">'+
     '<label class="input-group-text" >"""+ str(Nombre)+"""</label>'+
 '</div>'+
-'<select class="custom-select col-md-3" id="selectNombre">'+
+'<select class="custom-select col-md-3" id="select"""+str(Nombre)+'"'+""">'+
     '<option value="0" selected>Selecciona una opcion</option>'+"""
     
     #listado Valores
@@ -993,6 +993,12 @@ contenidoform += '<div class="input-group mb-3">'+
     contenido +="""         
         
 """
+
+    contenido += """//3.1 Obtener opcion seleccionadas
+function obtenerselect"""+str(Nombre)+"""(){
+    selectNombre1 = document.getElementById("select"""+str(Nombre)+'"'+""")
+    return selectNombre1.value
+}"""
 
     return str(contenido)
 
@@ -1044,14 +1050,10 @@ divcontenido = document.getElementById("contenidoformulario");"""
         lista2 = ["mario1","mario2"]
         contenido += Finputselect("mario",lista2)
 
-
+        
         
 
-        contenido += """//3.1 Obtener opcion seleccionadas
-function obtenerSelectNombre(){
-    selectNombre1 = document.getElementById("selectNombre")
-    return selectNombre1.value
-}"""
+        
 
         contenido +="""         
         
