@@ -908,6 +908,17 @@ contenidoform += '<div class="input-group input-group-sm mb-4">'+
         
 """
 
+    #2.1 crear funcion get
+    contenido += """function obtenerinputtext"""+ str(Valor) + """(){
+        inputE = document.getElementById("inputtext""" + str(Valor) + '"' +""")
+        return inputE.value
+    }"""
+
+    #4.2 Guarda el nombre la funcion
+    global Listadovarget
+    nombreVar = "obtenerinputtext"+ str(Valor) + "()"
+    Listadovarget.append(nombreVar)
+
     return contenido 
 
 #/////////////////////////////////////////////////////////////////
@@ -981,7 +992,7 @@ Nombre = document.getElementsByName("""+'"'+'inputradio'+str(Nombre)+'"'+""")"""
 ################################################################
 #/////////////////////////////////////////////////////////////////
 def Finputselect(Nombre,Valores):
-
+    #A 1.0 crear Input Select
     contenido = """//----------------------------------------------------------------
 //[ S 1.0 GRUPO OPTION - SELECT ]
 contenidoform += '<div class="input-group mb-3">'+
@@ -991,27 +1002,33 @@ contenidoform += '<div class="input-group mb-3">'+
 '<select class="custom-select col-md-3" id="select"""+str(Nombre)+'"'+""">'+
     '<option value="0" selected>Selecciona una opcion</option>'+"""
     
-    #listado Valores
+    #1.1 listado elementos select
     for g in Valores:
         contenido += """'<option value="Valores1">"""+ str(g) +"""</option>'+"""
 
     contenido += """'</select>'+
 '</div>'
 """
-
+    #Espacio
     contenido +="""         
         
 """
-
+    #2.1 Funcion Get
     contenido += """//3.1 Obtener opcion seleccionadas
 function obtenerselect"""+str(Nombre)+"""(){
     selectNombre1 = document.getElementById("select"""+str(Nombre)+'"'+""")
     return selectNombre1.value
 }"""
-
+    #espacio
     contenido +="""         
         
 """
+    #4.2 Guarda el nombre la funcion
+    global Listadovarget
+    nombreVar = "obtenerselect"+ str(Nombre) + "()"
+    Listadovarget.append(nombreVar)
+
+
     return str(contenido)
 
 #/////////////////////////////////////////////////////////////////
@@ -1020,7 +1037,7 @@ def Fboton(Valor, Evento):
     variableValor = ""
     #Quitar Espacios
     variableValor = Gquitarespacios(Valor)
-    print(variableValor)
+    
 
     #Evaluar que tipo de boton es entrada o info
     if (Evento == 'entrada' or Evento == 'Entrada'):
@@ -1097,7 +1114,6 @@ def Gconvertirlistadoatexto(Listado):
 
     txtlist += "]"
 
-    print(txtlist)
     return str(txtlist)
 
 
