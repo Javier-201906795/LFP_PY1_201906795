@@ -929,20 +929,40 @@ contenidoform += '<div class="col-md-12 mb-4">'+
     '""" +  g  + """'+
 '</label>'+
 '</div>'+"""
-
+        #Fin For
         contenido +="""'</div>'"""
+
+    #Espacio
+    contenido +="""         
+        
+"""
+    #Convertir listado a texto
+    txtlist = "["
+    cont1 = 0
+    for g in Valores:
+        cont1 += 1 
+        txtlist += g 
+        if cont1 < len(Valores):
+            txtlist += ","
+
+    txtlist += "]"
+
+    #print(txtlist)
 
 
     #Funcion para obtener datos
-    contenido += """//1.1 OBTENER INPUT - RADIO SELECCIONADO
-Nombre = document.getElementsByName('NOMBRE')
+    contenido += """//Z1.1 OBTENER INPUT - RADIO SELECCIONADO
+Nombre = document.getElementsByName("""+'"'+'inputradio'+str(Nombre)+'"'+""")"""
 
-function obtenerradioNombre() {
-    //2.1 Listado con los Valores
-    listadoNombre = ["valor1","valor2","valor3"]
+    contenido +="""         
+        
+"""
+    contenido += """function obtener"""+'inputradio'+str(Nombre)+"""() {"""
+    contenido += """//2.1 Listado con los Valores
+    listadoNombre = """+ txtlist +"""
 
     //3.1 Obtiene los input radio 
-    var ele = document.getElementsByName('NOMBRE');
+    var ele = document.getElementsByName("""+'"'+'inputradio'+str(Nombre)+'"'+""");
     //3.1.1 Evalua uno por uno para encontrar con el seleccionado
     for(i = 0; i < ele.length; i++) {
         if(ele[i].checked)
@@ -950,6 +970,7 @@ function obtenerradioNombre() {
         return listadoNombre[i]
     }
 }"""
+    
 
 
     contenido +="""         
@@ -1024,7 +1045,7 @@ function obtenerSelectNombre(){
         contenido +="""//----------------------------------------------------------------
 //[B 1.0 BOTON - BUTTON | INFO]
 contenidoform += '<div class="row ">'+
-    '<button type="button" class="btn btn-primary btn-lg col-md-2 mb-4" onclick="evento()">Iframe</button>'+
+    '<button type="button" class="btn btn-primary btn-lg col-md-2 mb-4" onclick="inputradiomario()">Iframe</button>'+
 '</div>'"""
 
         contenido +="""         
