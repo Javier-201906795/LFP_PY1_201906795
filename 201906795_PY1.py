@@ -968,8 +968,8 @@ Nombre = document.getElementsByName("""+'"'+'inputradio'+str(Nombre)+'"'+""")"""
         if(ele[i].checked)
         //3.1.2 Guarda su Valor
         alert(listadoNombre[i])
-        return listadoNombre[i]
     }
+    return listadoNombre[i]
 }"""
     
 
@@ -979,42 +979,10 @@ Nombre = document.getElementsByName("""+'"'+'inputradio'+str(Nombre)+'"'+""")"""
 """
 
     return contenido
-
 ################################################################
 #/////////////////////////////////////////////////////////////////
-################################################################
-def crearformulario():
-    print("creando formulario...")
-
-    #[A1.0 Crear JAVASCRIPT ] 
-    try:
-        #[1.2 Abre el archivo]
-        f = open('formulario.js','w')
-        #[2.0 Nuevo contenido]
-        contenido = """//Obtener div donde se colocara los elementos del formulario
-divcontenido = document.getElementById("contenidoformulario");"""
-
-        #[ CREAR LABEL ]
-        contenido += Flabel("mario")
-
-        #[ CREAR INPUT TEXT ]
-        contenido += Finputtext("mario","fondomario")
-
-
-        #[ CREAR INPUT RADIO ]
-        lista1 = ["mario1","mario2"]
-        contenido += Finputradio("mario",lista1)
-        
-
-        
-
-        
-
-        contenido +="""         
-        
-"""
-
-        contenido += """//----------------------------------------------------------------
+def Finputselect(Nombre,Valores):
+    contenido = """//----------------------------------------------------------------
 //[ S 1.0 GRUPO OPTION - SELECT ]
 contenidoform += '<div class="input-group mb-3">'+
 '<div class="input-group-prepend col-md-2">'+
@@ -1029,9 +997,45 @@ contenidoform += '<div class="input-group mb-3">'+
 '</div>'
 """
 
-        contenido +="""         
+    contenido +="""         
         
 """
+
+    return str(contenido)
+
+################################################################
+#/////////////////////////////////////////////////////////////////
+################################################################
+def crearformulario():
+    print("creando formulario...")
+
+    #[A1.0 Crear JAVASCRIPT ] 
+    try:
+        #[1.2 Abre el archivo]
+        f = open('formulario.js','w')
+        #[2.0 Nuevo contenido]
+
+        #DIV contenedor de formulario
+        contenido = """//Obtener div donde se colocara los elementos del formulario
+divcontenido = document.getElementById("contenidoformulario");"""
+
+        #[ CREAR LABEL ]
+        contenido += Flabel("mario")
+
+        #[ CREAR INPUT TEXT ]
+        contenido += Finputtext("mario","fondomario")
+
+
+        #[ CREAR INPUT RADIO ]
+        lista1 = ["mario1","mario2"]
+        contenido += Finputradio("mario",lista1)
+        
+        #[ CREAR INPUT SELECT ]
+        lista2 = ["mario1","mario2"]
+        contenido += Finputselect("mario",lista2)
+
+
+        
 
         contenido += """//3.1 Obtener opcion seleccionadas
 function obtenerSelectNombre(){

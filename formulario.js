@@ -36,22 +36,17 @@ Nombre = document.getElementsByName("inputradiomario")
         
 function obtenerinputradiomario() {//2.1 Listado con los Valores
     listadoNombre = ['mario1','mario2']
-    
 
     //3.1 Obtiene los input radio 
     var ele = document.getElementsByName("inputradiomario");
     //3.1.1 Evalua uno por uno para encontrar con el seleccionado
-    for(i = 0; i < (ele.length); i++) {
-        
+    for(i = 0; i < ele.length; i++) {
         if(ele[i].checked)
         //3.1.2 Guarda su Valor
-        console.log(listadoNombre[i])
-        
+        alert(listadoNombre[i])
     }
     return listadoNombre[i]
 }         
-        
-         
         
 //----------------------------------------------------------------
 //[ S 1.0 GRUPO OPTION - SELECT ]
