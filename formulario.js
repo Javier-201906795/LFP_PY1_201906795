@@ -1,16 +1,16 @@
 //Obtener div donde se colocara los elementos del formulario
 divcontenido = document.getElementById("contenidoformulario");//----------------------------------------------------------------
 //[L1.0 LABEL ]
-contenidoform = '<label class="mb-3"> VALOR </label>'         
+contenidoform = '<label class="mb-3">mario</label>'         
         
 //----------------------------------------------------------------
 //[T1.0 TEXTO - INPUT ]
 contenidoform += '<div class="input-group input-group-sm mb-4">'+
 '<div class="input-group-prepend col-md-2">'+
-    '<span class="input-group-text">VALOR</span>'+
+    '<span class="input-group-text">mario</span>'+
 '</div>'+
 '<div class="col-md-7">'+
-    '<input type="text" class="form-control col-sm-2" aria-label="Small" placeholder="FONDO" id="inputvalor" >'+
+    '<input type="text" class="form-control col-sm-2" aria-label="Small" placeholder="fondomario" id="inputfondomario">'+
 '</div>'+
 '</div>'         
         

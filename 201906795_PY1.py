@@ -878,8 +878,35 @@ def analizar():
 
 ################################################################
 #/////////////////////////////////////////////////////////////////
-def Flabel():
-    return None
+#Funcion para crear labels
+def Flabel(Valor):
+    contenido = """//----------------------------------------------------------------
+//[L1.0 LABEL ]
+contenidoform = '<label class="mb-3">"""+ str(Valor) +"""</label>'"""
+
+    contenido +="""         
+        
+"""
+    return contenido
+#/////////////////////////////////////////////////////////////////
+#Funcion para crear labels
+def Finputtext(Valor, Fondo):
+    contenido = """//----------------------------------------------------------------
+//[T1.0 TEXTO - INPUT ]
+contenidoform += '<div class="input-group input-group-sm mb-4">'+
+'<div class="input-group-prepend col-md-2">'+
+    '<span class="input-group-text">""" + str(Valor) + """</span>'+
+'</div>'+
+'<div class="col-md-7">'+
+    '<input type="text" class="form-control col-sm-2" aria-label="Small" placeholder=""" + '"' + str(Fondo) + '"' + """ id="""+ '"' +'input'+ str(Fondo) + '"' +""">'+
+'</div>'+
+'</div>'"""
+
+    contenido +="""         
+        
+"""
+
+    return contenido 
 
 
 ################################################################
@@ -896,30 +923,14 @@ def crearformulario():
         contenido = """//Obtener div donde se colocara los elementos del formulario
 divcontenido = document.getElementById("contenidoformulario");"""
 
+        #[ CREAR LABEL ]
+        contenido += Flabel("mario")
 
-        contenido += """//----------------------------------------------------------------
-//[L1.0 LABEL ]
-contenidoform = '<label class="mb-3"> VALOR </label>'"""
+        #[ CREAR INPUT TEXT ]
+        contenido += Finputtext("mario","fondomario")
 
-        contenido +="""         
+        #[ C ]
         
-"""
-
-
-        contenido += """//----------------------------------------------------------------
-//[T1.0 TEXTO - INPUT ]
-contenidoform += '<div class="input-group input-group-sm mb-4">'+
-'<div class="input-group-prepend col-md-2">'+
-    '<span class="input-group-text">VALOR</span>'+
-'</div>'+
-'<div class="col-md-7">'+
-    '<input type="text" class="form-control col-sm-2" aria-label="Small" placeholder="FONDO" id="inputvalor" >'+
-'</div>'+
-'</div>'"""
-
-        contenido +="""         
-        
-"""
 
         contenido +="""//----------------------------------------------------------------
 //[R1.0 GRUPO RADIO - GRUPO INPUT ]
