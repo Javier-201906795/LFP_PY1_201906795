@@ -19,6 +19,7 @@ ListadoElementos1 = []
 ListadoElementos2 = []
 #ListaVariablesGet para el formulario
 Listadovarget = []
+#Texto a Ingresado
 
 
 
@@ -971,11 +972,13 @@ Nombre = document.getElementsByName("""+'"'+'inputradio'+str(Nombre)+'"'+""")"""
     var ele = document.getElementsByName("""+'"'+'inputradio'+str(Nombre)+'"'+""");
     //3.1.1 Evalua uno por uno para encontrar con el seleccionado
     for(i = 0; i < ele.length; i++) {
-        if(ele[i].checked)
+        if(ele[i].checked){
         //3.1.2 Guarda su Valor
-        alert(listadoNombre[i])
+        //alert(listadoNombre[i])
+        return listadoNombre[i]
+        }
     }
-    return listadoNombre[i]
+    
 }"""
     
 
@@ -985,7 +988,7 @@ Nombre = document.getElementsByName("""+'"'+'inputradio'+str(Nombre)+'"'+""")"""
 """
     #4.2 Guarda el nombre la funcion
     global Listadovarget
-    nombreVar = "inputradio"+ str(Nombre) + "()"
+    nombreVar = "obtenerinputradio"+ str(Nombre) + "()"
     Listadovarget.append(nombreVar)
 
     return contenido
@@ -1004,7 +1007,7 @@ contenidoform += '<div class="input-group mb-3">'+
     
     #1.1 listado elementos select
     for g in Valores:
-        contenido += """'<option value="Valores1">"""+ str(g) +"""</option>'+"""
+        contenido += """'<option value="""+'"'+str(g)+'"'+""">"""+ str(g) +"""</option>'+"""
 
     contenido += """'</select>'+
 '</div>'
@@ -1075,7 +1078,7 @@ contenidoform += '<div class="row ">'+
         contenido +="""//3.1 Evento
     function info"""+str(variableValor)+"""(){
         alert("info")
-        
+        console.log("""+"`"+Textform+"`"+""")        
 
     }"""
 
@@ -1149,6 +1152,9 @@ divcontenido = document.getElementById("contenidoformulario");"""
 
         #[ CREAR BOTON ]
         contenido += Fboton("boton mario","entrada")
+
+        #[ CREAR BOTON2 ]
+        contenido += Fboton("boton mario","info")
 
         #IMPRIME NOMBRE FUNCIONES
         print(Listadovarget)

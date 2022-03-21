@@ -44,11 +44,13 @@ function obtenerinputradiomario() {//2.1 Listado con los Valores
     var ele = document.getElementsByName("inputradiomario");
     //3.1.1 Evalua uno por uno para encontrar con el seleccionado
     for(i = 0; i < ele.length; i++) {
-        if(ele[i].checked)
+        if(ele[i].checked){
         //3.1.2 Guarda su Valor
-        alert(listadoNombre[i])
+        //alert(listadoNombre[i])
+        return listadoNombre[i]
+        }
     }
-    return listadoNombre[i]
+    
 }         
         
 //----------------------------------------------------------------
@@ -58,7 +60,7 @@ contenidoform += '<div class="input-group mb-3">'+
     '<label class="input-group-text" >mario</label>'+
 '</div>'+
 '<select class="custom-select col-md-3" id="selectmario">'+
-    '<option value="0" selected>Selecciona una opcion</option>'+'<option value="Valores1">mario1</option>'+'<option value="Valores1">mario2</option>'+'</select>'+
+    '<option value="0" selected>Selecciona una opcion</option>'+'<option value="mario1">mario1</option>'+'<option value="mario2">mario2</option>'+'</select>'+
 '</div>'
          
         
@@ -78,6 +80,41 @@ contenidoform += '<div class="row ">'+
     function entradabotonmario(){
         alert("entrada")
         
+
+    }         
+            
+             
+        
+//----------------------------------------------------------------
+//[B 1.0 BOTON - BUTTON | INFO]
+contenidoform += '<div class="row ">'+
+    '<button type="button" class="btn btn-secondary btn-lg col-md-2 mb-4" onclick="infobotonmario()">boton mario</button>'+
+'</div>'         
+            
+    //3.1 Evento
+    function infobotonmario(){
+        alert("info")
+        var mario = `formulario ~>> [
+    <
+        tipo: "etiqueta",
+        valor: "Nombre:"
+    >,
+    <
+        tipo: "texto",
+        valor: "Nombre",
+        fondo: "Ingrese nombre"
+    >,
+    <
+        tipo: "grupo-radio",
+        nombre: "pais",
+        valores: ['Guatemala', 'El Salvador','Honduras']
+    >,
+    <
+        tipo: "boton",
+        valor: "Valor",
+        evento: <EVENTO>
+    >
+]`        
 
     }         
             
