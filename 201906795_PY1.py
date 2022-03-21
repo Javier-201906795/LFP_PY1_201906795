@@ -4,6 +4,8 @@ from calendar import c
 from tkinter import *
 from tkinter import filedialog, font
 
+import webbrowser
+
 #my Clases
 from Errores import Errores
 from Elementos import Elementos
@@ -22,6 +24,10 @@ ListadoElementos2 = []
 Listadovarget = []
 #Texto a Ingresado
 
+
+def abrirmanualusuario():
+    path = 'MANUAL_USUARIO.pdf'
+    webbrowser.open_new(path)
 
 
 ################################################################
@@ -1542,7 +1548,7 @@ btnmenu["menu"]= btnmenu.menu
 
 btnmenu.menu.add_checkbutton(label = "Reporte de Tokens ", variable = 1, command=reportetokens)  
 btnmenu.menu.add_checkbutton(label = "Reporte de Errores", variable = 2, command=reporteerrores)
-btnmenu.menu.add_checkbutton(label = "Manual de Usuario",  variable = 3, command=mensaje)
+btnmenu.menu.add_checkbutton(label = "Manual de Usuario",  variable = 3, command=abrirmanualusuario)
 btnmenu.menu.add_checkbutton(label = "Manual Tecnico",     variable = 4, command=mensaje)                            
 
 btnmenu.pack(expand=True)
