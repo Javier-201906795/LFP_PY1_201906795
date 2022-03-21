@@ -17,7 +17,9 @@ contenidoform += '<div class="input-group input-group-sm mb-4">'+
 function obtenerinputtextmario(){
         inputE = document.getElementById("inputtextmario")
         return inputE.value
-    }//----------------------------------------------------------------
+    }         
+        
+//----------------------------------------------------------------
 //[R1.0 GRUPO RADIO - GRUPO INPUT ]
 contenidoform += '<div class="col-md-12 mb-4">'+
 '<div class="col-md-2 mb-0 input-group-sm">'+
@@ -71,6 +73,22 @@ function obtenerselectmario(){
 }         
         
 //----------------------------------------------------------------
+//[T1.0 TEXTO - INPUT ]
+contenidoform += '<div class="input-group input-group-sm mb-4">'+
+'<div class="input-group-prepend col-md-2">'+
+    '<span class="input-group-text">test2</span>'+
+'</div>'+
+'<div class="col-md-7">'+
+    '<input type="text" class="form-control col-sm-2" aria-label="Small" placeholder="ingrese un texto aqui" id="inputtexttest2">'+
+'</div>'+
+'</div>'         
+        
+function obtenerinputtexttest2(){
+        inputE = document.getElementById("inputtexttest2")
+        return inputE.value
+    }         
+        
+//----------------------------------------------------------------
 //[B 1.0 BOTON - BUTTON | ENTRADA]
 contenidoform += '<div class="row ">'+
     '<button type="button" class="btn btn-primary btn-lg col-md-2 mb-4" onclick="entradabotonmario()">boton mario</button>'+
@@ -78,9 +96,16 @@ contenidoform += '<div class="row ">'+
             
     //3.1 Evento
     function entradabotonmario(){
-        alert("entrada")
-        
-
+        alert("entrada");         
+            
+      console.log(obtenerinputtextmario())         
+            
+      console.log(obtenerinputradiomario())         
+            
+      console.log(obtenerselectmario())         
+            
+      console.log(obtenerinputtexttest2())         
+            
     }         
             
              
@@ -103,11 +128,6 @@ contenidoform += '<div class="row ">'+
         tipo: "texto",
         valor: "Nombre",
         fondo: "Ingrese nombre"
-    >,
-    <
-        tipo: "grupo-radio",
-        nombre: "sexo",
-        valores: ['Masculino', 'Femnino']
     >,
     <
         tipo: "grupo-radio",

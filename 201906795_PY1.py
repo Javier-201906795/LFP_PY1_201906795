@@ -915,6 +915,10 @@ contenidoform += '<div class="input-group input-group-sm mb-4">'+
         return inputE.value
     }"""
 
+    contenido +="""         
+        
+"""
+
     #4.2 Guarda el nombre la funcion
     global Listadovarget
     nombreVar = "obtenerinputtext"+ str(Valor) + "()"
@@ -1053,18 +1057,29 @@ contenidoform += '<div class="row ">'+
         contenido +="""         
             
     """
-
+        # 2.0 Funcion Mostrar datos entrada
         contenido +="""//3.1 Evento
     function entrada"""+str(variableValor)+"""(){
-        alert("entrada")
-        
+        alert("entrada");"""
 
-    }"""
+        contenido +="""         
+            
+    """
+        
+        #colocar funciones
+        for funcion in Listadovarget:
+            contenido += "  console.log(" +  funcion + ")"
+            contenido +="""         
+            
+    """ 
+
+        contenido += "}"
 
         contenido +="""         
             
     """
     else:
+        ## [ INFO ]
         contenido ="""//----------------------------------------------------------------
 //[B 1.0 BOTON - BUTTON | INFO]
 contenidoform += '<div class="row ">'+
@@ -1160,11 +1175,16 @@ divcontenido = document.getElementById("contenidoformulario");"""
         lista2 = ["mario1","mario2"]
         contenido += Finputselect("mario",lista2)
 
+        #[ CREAR INPUT TEXT ]
+        contenido += Finputtext("test2","ingrese un texto aqui")
+
         #[ CREAR BOTON ]
         contenido += Fboton("boton mario","entrada")
 
         #[ CREAR BOTON2 ]
         contenido += Fboton("boton mario","info")
+
+        
 
         #IMPRIME NOMBRE FUNCIONES
         print(Listadovarget)
