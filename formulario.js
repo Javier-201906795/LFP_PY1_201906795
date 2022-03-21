@@ -1,7 +1,8 @@
 //Obtener div donde se colocara los elementos del formulario
-divcontenido = document.getElementById("contenidoformulario");//----------------------------------------------------------------
+divcontenido = document.getElementById("contenidoformulario");
+contenidoform = '';//----------------------------------------------------------------
 //[L1.0 LABEL ]
-contenidoform = '<label class="mb-3">Nombre:</label>'         
+contenidoform += '<label class="mb-3">Nombre:</label>'         
         
 //----------------------------------------------------------------
 //[T1.0 TEXTO - INPUT ]
@@ -17,7 +18,7 @@ contenidoform += '<div class="input-group input-group-sm mb-4">'+
 function obtenerinputtextnombre(){
         inputE = document.getElementById("inputtextnombre")
         return inputE.value
-    }         
+}         
         
 //----------------------------------------------------------------
 //[R1.0 GRUPO RADIO - GRUPO INPUT ]
@@ -97,13 +98,40 @@ function obtenerinputradiopais() {//2.1 Listado con los Valores
 }         
         
 //----------------------------------------------------------------
+//[L1.0 LABEL ]
+contenidoform += '<label class="mb-3">Tipo de color de ojos:</label>'         
+        
+//----------------------------------------------------------------
+//[ S 1.0 GRUPO OPTION - SELECT ]
+contenidoform += '<div class="input-group mb-3">'+
+'<div class="input-group-prepend col-md-2">'+
+    '<label class="input-group-text" >Color ojos</label>'+
+'</div>'+
+'<select class="custom-select col-md-3" id="selectcolorojos">'+
+    '<option value="0" selected>Selecciona una opcion</option>';//9.1.1 Evalua uno por uno
+    Lista1 = [`'Cafe'`,`'Verde'`,`'Azules'`,`'No se que color son'`]
+    for(i = 0; i < Lista1.length; i++) {
+        contenidoform += '<option value="'+Lista1[i]+'">'+Lista1[i]+'</option>';
+    }         
+        
+contenidoform += '</select>'+
+'</div>'
+         
+        
+//3.1 Obtener opcion seleccionadas
+function obtenerselectcolorojos(){
+    selectNombre1 = document.getElementById("selectcolorojos")
+    return selectNombre1.value
+}         
+        
+//----------------------------------------------------------------
 //[B 1.0 BOTON - BUTTON | INFO]
 contenidoform += '<div class="row ">'+
-    '<button type="button" class="btn btn-secondary btn-lg col-md-2 mb-4" onclick="infovalor()">Valor</button>'+
+    '<button type="button" class="btn btn-secondary btn-lg col-md-2 mb-4" onclick="infoinfo()">Info</button>'+
 '</div>'         
             
     //3.1 Evento
-    function infovalor(){
+    function infoinfo(){
         //alert("info")
         console.log(`formulario ~>> [
     <
@@ -126,9 +154,23 @@ contenidoform += '<div class="row ">'+
         valores: ['Guatemala', 'El Salvador','Honduras']
     >,
     <
+        tipo: "etiqueta",
+        valor: "Tipo de color de ojos:"
+    >,
+    <
+        tipo: "grupo-option",
+        nombre: "Color ojos",
+        valores: ['Cafe', 'Verde','Azules', 'No se que color son']
+    >,
+    <
         tipo: "boton",
-        valor: "Valor",
-        evento: <EVENTO>
+        valor: "Info",
+        evento: <info>
+    >,
+    <
+        tipo: "boton",
+        valor: "Entrada",
+        evento: <entrada>
     >
 ]`)        
         //Crear iframe
@@ -140,6 +182,28 @@ contenidoform += '<div class="row ">'+
         <br>`
 
 
+    }         
+            
+             
+        
+//----------------------------------------------------------------
+//[B 1.0 BOTON - BUTTON | ENTRADA]
+contenidoform += '<div class="row ">'+
+    '<button type="button" class="btn btn-primary btn-lg col-md-2 mb-4" onclick="entradaentrada()">Entrada</button>'+
+'</div>'         
+            
+    //3.1 Evento
+    function entradaentrada(){
+        alert("entrada");         
+            
+      console.log(obtenerinputtextNombre())         
+            
+      console.log(obtenerinputradiosexo())         
+            
+      console.log(obtenerinputradiopais())         
+            
+      console.log(obtenerselectcolorojos())         
+            
     }         
             
              

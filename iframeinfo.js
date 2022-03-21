@@ -20,9 +20,23 @@ divcontenido = document.getElementById("contenido");texto = `formulario ~>> [
         valores: ['Guatemala', 'El Salvador','Honduras']
     >,
     <
+        tipo: "etiqueta",
+        valor: "Tipo de color de ojos:"
+    >,
+    <
+        tipo: "grupo-option",
+        nombre: "Color ojos",
+        valores: ['Cafe', 'Verde','Azules', 'No se que color son']
+    >,
+    <
         tipo: "boton",
-        valor: "Valor",
-        evento: <EVENTO>
+        valor: "Info",
+        evento: <info>
+    >,
+    <
+        tipo: "boton",
+        valor: "Entrada",
+        evento: <entrada>
     >
 ]`;         
             

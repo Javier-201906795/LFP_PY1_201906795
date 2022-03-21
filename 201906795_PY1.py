@@ -885,7 +885,7 @@ def analizar():
 def Flabel(Valor):
     contenido = """//----------------------------------------------------------------
 //[L1.0 LABEL ]
-contenidoform = '<label class="mb-3">"""+ str(Valor) +"""</label>'"""
+contenidoform += '<label class="mb-3">"""+ str(Valor) +"""</label>'"""
 
     contenido +="""         
         
@@ -1017,13 +1017,29 @@ contenidoform += '<div class="input-group mb-3">'+
     '<label class="input-group-text" >"""+ str(Nombre)+"""</label>'+
 '</div>'+
 '<select class="custom-select col-md-3" id="select"""+str(variableNombre)+'"'+""">'+
-    '<option value="0" selected>Selecciona una opcion</option>'+"""
+    '<option value="0" selected>Selecciona una opcion</option>';"""
     
     #1.1 listado elementos select
-    for g in Valores:
-        contenido += """'<option value="""+'"'+str(g)+'"'+""">"""+ str(g) +"""</option>'+"""
+    
+    #1.2 Convertir listado a texto
+    txtlist = Gconvertirlistadoatexto(Valores)
 
-    contenido += """'</select>'+
+    contenido += """//9.1.1 Evalua uno por uno
+    Lista1 = """+txtlist+"""
+    for(i = 0; i < Lista1.length; i++) {
+        contenidoform += '<option value="'+Lista1[i]+'">'+Lista1[i]+'</option>';
+    }"""
+
+    #Espacio
+    contenido +="""         
+        
+"""
+
+    
+    # for g in Valores:
+    #     contenido += """'<option value="""+'`'+str(g)+'`'+""">"""+ str(g) +"""</option>'+"""
+
+    contenido += """contenidoform += '</select>'+
 '</div>'
 """
     #Espacio
@@ -1035,7 +1051,7 @@ contenidoform += '<div class="input-group mb-3">'+
     #2.1 Funcion Get
     contenido += """//3.1 Obtener opcion seleccionadas
 function obtenerselect"""+str(variableNombre)+"""(){
-    selectNombre1 = document.getElementById("select"""+str(Nombre)+'"'+""")
+    selectNombre1 = document.getElementById("select"""+str(variableNombre)+'"'+""")
     return selectNombre1.value
 }"""
     #espacio
@@ -1044,7 +1060,7 @@ function obtenerselect"""+str(variableNombre)+"""(){
 """
     #4.2 Guarda el nombre la funcion
     global Listadovarget
-    nombreVar = "obtenerselect"+ str(Nombre) + "()"
+    nombreVar = "obtenerselect"+ str(variableNombre) + "()"
     Listadovarget.append(nombreVar)
 
 
@@ -1170,7 +1186,8 @@ def crearformulario():
 
         #DIV contenedor de formulario
         contenido = """//Obtener div donde se colocara los elementos del formulario
-divcontenido = document.getElementById("contenidoformulario");"""
+divcontenido = document.getElementById("contenidoformulario");
+contenidoform = '';"""
 
         #[3.0 Evaluar Cada Elemento]
         for elemento in ListadoElementos2:
@@ -1193,23 +1210,8 @@ divcontenido = document.getElementById("contenidoformulario");"""
                 contenido += Fboton(elemento.valor,elemento.evento)
 
 
-
-        
-
-        
-
-
-        
-        
-        
-
-        
-
-
-
-        
-
         #IMPRIME NOMBRE FUNCIONES
+        print("[Funciones Get Formulario]")
         print(Listadovarget)
         
 
