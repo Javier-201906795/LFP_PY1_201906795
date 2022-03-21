@@ -87,6 +87,7 @@ def abrirarchivoform():
 
             #Salvar texto en Variable
             global Textform
+            Textform = ""
             Textform = str(text)
 
             return text
@@ -114,6 +115,25 @@ def imprimirelementos():
 #/////////////////////////////////////////////////////////////////
 ################################################################
 def analizar():
+    #[Limpiar Valores]
+    global Textform
+    Textform = "N/A"
+    global TextVacioVentana
+    TextVacioVentana = ""
+    global ListaErrores
+    ListaErrores = []
+    #Elementos en Texto
+    global ListadoElementos1
+    ListadoElementos1 = []
+    #Elementos dentro de una clase para facilitar su obtencion de datos
+    global ListadoElementos2
+    ListadoElementos2 = []
+    #ListaVariablesGet para el formulario
+    global Listadovarget
+    Listadovarget = []
+
+
+
     #[ VALIDADORES ]
     #Procesar texto
     val1 = True
@@ -292,7 +312,7 @@ def analizar():
                         else:
                             #3.5 Guardar Elemento
                             nuevoelemento = textolimpio[inicio + 1:fin - 1]
-                            global ListadoElementos1
+                            # global ListadoElementos1
                             ListadoElementos1.append(nuevoelemento)
 
                         
@@ -850,7 +870,7 @@ def analizar():
                     ############################
                     ############################
                     #[ GUARDAR ELEMENTOS EN LISTADO 2 ]
-                    global ListadoElementos2
+                    # global ListadoElementos2
                     ListadoElementos2.append(newelemento)
                     ############################
                     ############################
@@ -891,6 +911,10 @@ contenidoform += '<label class="mb-3">"""+ str(Valor) +"""</label>'"""
         
 """
     return contenido
+
+
+
+
 #/////////////////////////////////////////////////////////////////
 #Funcion para crear INPUT TEXT
 def Finputtext(Valor, Fondo):
@@ -924,10 +948,14 @@ contenidoform += '<div class="input-group input-group-sm mb-4">'+
 
     #4.2 Guarda el nombre la funcion
     global Listadovarget
-    nombreVar = "obtenerinputtext"+ str(Valor) + "()"
+    nombreVar = "obtenerinputtext"+ str(variableValor) + "()"
     Listadovarget.append(nombreVar)
 
     return contenido 
+
+
+
+
 
 #/////////////////////////////////////////////////////////////////
 #Funcion para crear INPUT RADIO
@@ -1003,6 +1031,12 @@ Nombre = document.getElementsByName("""+'"'+'inputradio'+str(variableNombre)+'"'
     Listadovarget.append(nombreVar)
 
     return contenido
+
+
+
+
+
+
 ################################################################
 #/////////////////////////////////////////////////////////////////
 def Finputselect(Nombre,Valores):
@@ -1065,6 +1099,12 @@ function obtenerselect"""+str(variableNombre)+"""(){
 
 
     return str(contenido)
+
+
+
+
+
+
 
 #/////////////////////////////////////////////////////////////////
 ################################################################
@@ -1180,12 +1220,18 @@ def crearformulario():
 
     #[A1.0 Crear JAVASCRIPT ] 
     try:
+        #0.0 Limpia el archivo
+        f = open('formulario.js','w')
+        contenido = ""
+        f.write(contenido)
+        f.close()
+
         #[1.2 Abre el archivo]
         f = open('formulario.js','w')
         #[2.0 Nuevo contenido]
 
         #DIV contenedor de formulario
-        contenido = """//Obtener div donde se colocara los elementos del formulario
+        contenido = """//0.0Obtener div donde se colocara los elementos del formulario
 divcontenido = document.getElementById("contenidoformulario");
 contenidoform = '';"""
 

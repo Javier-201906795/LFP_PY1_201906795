@@ -1,4 +1,4 @@
-//Obtener div donde se colocara los elementos del formulario
+//0.0Obtener div donde se colocara los elementos del formulario
 divcontenido = document.getElementById("contenidoformulario");
 contenidoform = '';//----------------------------------------------------------------
 //[L1.0 LABEL ]
@@ -18,7 +18,7 @@ contenidoform += '<div class="input-group input-group-sm mb-4">'+
 function obtenerinputtextnombre(){
         inputE = document.getElementById("inputtextnombre")
         return inputE.value
-}         
+    }         
         
 //----------------------------------------------------------------
 //[R1.0 GRUPO RADIO - GRUPO INPUT ]
@@ -133,46 +133,7 @@ contenidoform += '<div class="row ">'+
     //3.1 Evento
     function infoinfo(){
         //alert("info")
-        console.log(`formulario ~>> [
-    <
-        tipo: "etiqueta",
-        valor: "Nombre:"
-    >,
-    <
-        tipo: "texto",
-        valor: "Nombre",
-        fondo: "Ingrese nombre"
-    >,
-    <
-        tipo: "grupo-radio",
-        nombre: "sexo",
-        valores: ['Masculino', 'Femnino']
-    >,
-    <
-        tipo: "grupo-radio",
-        nombre: "pais",
-        valores: ['Guatemala', 'El Salvador','Honduras']
-    >,
-    <
-        tipo: "etiqueta",
-        valor: "Tipo de color de ojos:"
-    >,
-    <
-        tipo: "grupo-option",
-        nombre: "Color ojos",
-        valores: ['Cafe', 'Verde','Azules', 'No se que color son']
-    >,
-    <
-        tipo: "boton",
-        valor: "Info",
-        evento: <info>
-    >,
-    <
-        tipo: "boton",
-        valor: "Entrada",
-        evento: <entrada>
-    >
-]`)        
+        console.log(`N/A`)        
         //Crear iframe
         //Obtener div donde se colocara los elementos del formulario
         divcontenido = document.getElementById("contenidoformulario")
@@ -196,7 +157,7 @@ contenidoform += '<div class="row ">'+
     function entradaentrada(){
         alert("entrada");         
             
-      console.log(obtenerinputtextNombre())         
+      console.log(obtenerinputtextnombre())         
             
       console.log(obtenerinputradiosexo())         
             
