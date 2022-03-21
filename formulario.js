@@ -17,7 +17,7 @@ contenidoform += '<div class="input-group input-group-sm mb-4">'+
         
 function obtenerinputtextnombre(){
         inputE = document.getElementById("inputtextnombre")
-        return inputE.value
+        return [inputE.value, `Nombre`]
     }         
         
 //----------------------------------------------------------------
@@ -50,7 +50,7 @@ function obtenerinputradiosexo() {//2.1 Listado con los Valores
         if(ele[i].checked){
         //3.1.2 Guarda su Valor
         //alert(listadoNombre[i])
-        return listadoNombre[i]
+        return [listadoNombre[i],`sexo`]
         }
     }
     
@@ -91,7 +91,7 @@ function obtenerinputradiopais() {//2.1 Listado con los Valores
         if(ele[i].checked){
         //3.1.2 Guarda su Valor
         //alert(listadoNombre[i])
-        return listadoNombre[i]
+        return [listadoNombre[i],`pais`]
         }
     }
     
@@ -121,7 +121,7 @@ contenidoform += '</select>'+
 //3.1 Obtener opcion seleccionadas
 function obtenerselectcolorojos(){
     selectNombre1 = document.getElementById("selectcolorojos")
-    return selectNombre1.value
+    return [selectNombre1.value,`Color ojos`]
 }         
         
 //----------------------------------------------------------------
@@ -155,17 +155,27 @@ contenidoform += '<div class="row ">'+
             
     //3.1 Evento
     function entradaentrada(){
-        alert("entrada");         
+        alert("entrada");var ListadoDatos = [];         
             
-      console.log(obtenerinputtextnombre())         
+      console.log(obtenerinputtextnombre());         
             
-      console.log(obtenerinputradiosexo())         
+     
+            ListadoDatos.push(obtenerinputtextnombre());
+              console.log(obtenerinputradiosexo());         
             
-      console.log(obtenerinputradiopais())         
+     
+            ListadoDatos.push(obtenerinputradiosexo());
+              console.log(obtenerinputradiopais());         
             
-      console.log(obtenerselectcolorojos())         
+     
+            ListadoDatos.push(obtenerinputradiopais());
+              console.log(obtenerselectcolorojos());         
             
-    }         
+     
+            ListadoDatos.push(obtenerselectcolorojos());
+            console.log("-------");
+            console.log(ListadoDatos);
+            console.log("-------");}         
             
              
         

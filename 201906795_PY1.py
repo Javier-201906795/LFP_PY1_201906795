@@ -11,6 +11,7 @@ from Elementos import Elementos
 #[ VARIABLES GLOBALES ]
 
 Textform = "N/A"
+Textform2 = "NA"
 TextVacioVentana = ""
 ListaErrores = []
 #Elementos en Texto
@@ -87,8 +88,10 @@ def abrirarchivoform():
 
             #Salvar texto en Variable
             global Textform
-            Textform = ""
             Textform = str(text)
+
+            global Textform2
+            Textform2 = str(text)
 
             return text
     
@@ -939,7 +942,7 @@ contenidoform += '<div class="input-group input-group-sm mb-4">'+
     #2.1 crear funcion get
     contenido += """function obtenerinputtext"""+ str(variableValor) + """(){
         inputE = document.getElementById("inputtext""" + str(variableValor) + '"' +""")
-        return inputE.value
+        return [inputE.value, `""" + str(Valor)+ """`]
     }"""
 
     contenido +="""         
@@ -1014,7 +1017,7 @@ Nombre = document.getElementsByName("""+'"'+'inputradio'+str(variableNombre)+'"'
         if(ele[i].checked){
         //3.1.2 Guarda su Valor
         //alert(listadoNombre[i])
-        return listadoNombre[i]
+        return [listadoNombre[i],`"""+str(Nombre)+"""`]
         }
     }
     
@@ -1086,7 +1089,7 @@ contenidoform += '<div class="input-group mb-3">'+
     contenido += """//3.1 Obtener opcion seleccionadas
 function obtenerselect"""+str(variableNombre)+"""(){
     selectNombre1 = document.getElementById("select"""+str(variableNombre)+'"'+""")
-    return selectNombre1.value
+    return [selectNombre1.value,`"""+ str(Nombre)+"""`]
 }"""
     #espacio
     contenido +="""         
@@ -1130,18 +1133,31 @@ contenidoform += '<div class="row ">'+
     function entrada"""+str(variableValor)+"""(){
         alert("entrada");"""
 
+        contenido += "var ListadoDatos = [];"
+
         contenido +="""         
             
     """
         
         #colocar funciones
         for funcion in Listadovarget:
-            contenido += "  console.log(" +  funcion + ")"
+            contenido += "  console.log(" +  funcion + ");"
             contenido +="""         
             
     """ 
+            contenido += """ 
+            ListadoDatos.push("""+funcion+""");
+            """
+        #fin for
 
-        contenido += "}"
+        #Guardar informacion
+
+        
+        contenido += """console.log("-------");
+            console.log(ListadoDatos[1]);
+            console.log("-------");"""
+        contenido +=  """
+        }"""
 
         contenido +="""         
             
@@ -1360,7 +1376,7 @@ divcontenido = document.getElementById("contenido");"""
 
         
         #Variable
-        contenido +="""texto = """+"`"+Textform+"`;"
+        contenido +="""texto = """+"`"+Textform2+"`;"
         
         #Espacio
         contenido +="""         
