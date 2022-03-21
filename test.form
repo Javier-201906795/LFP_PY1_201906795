@@ -10,8 +10,22 @@ formulario ~>> [
     >,
     <
         tipo: "grupo-radio",
+        nombre: "sexo",
+        valores: ['Masculino', 'Femnino']
+    >,
+    <
+        tipo: "grupo-radio",
         nombre: "pais",
         valores: ['Guatemala', 'El Salvador','Honduras']
+    >,
+    <
+        tipo: "etiqueta",
+        valor: "Tipo de color de ojos:"
+    >,
+    <
+        tipo: "grupo-option",
+        nombre: "Color ojos",
+        valores: ['Cafe', 'Verde','Azules', 'No se que color son']
     >,
     <
         tipo: "boton",

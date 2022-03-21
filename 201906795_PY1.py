@@ -844,8 +844,8 @@ def analizar():
 
                     ############################
                     ############################
-                    print("##### [ Elemento a Evaluar ] ####")
-                    print(elemento)
+                    #print("##### [ Elemento a Evaluar ] ####")
+                    #print(elemento)
                     
                     ############################
                     ############################
@@ -894,6 +894,9 @@ contenidoform = '<label class="mb-3">"""+ str(Valor) +"""</label>'"""
 #/////////////////////////////////////////////////////////////////
 #Funcion para crear INPUT TEXT
 def Finputtext(Valor, Fondo):
+    #Quitar Espacios
+    variableValor = Gquitarespacios(Valor)
+
     contenido = """//----------------------------------------------------------------
 //[T1.0 TEXTO - INPUT ]
 contenidoform += '<div class="input-group input-group-sm mb-4">'+
@@ -901,7 +904,7 @@ contenidoform += '<div class="input-group input-group-sm mb-4">'+
     '<span class="input-group-text">""" + str(Valor) + """</span>'+
 '</div>'+
 '<div class="col-md-7">'+
-    '<input type="text" class="form-control col-sm-2" aria-label="Small" placeholder=""" + '"' + str(Fondo) + '"' + """ id="""+ '"' +'inputtext'+ str(Valor) + '"' +""">'+
+    '<input type="text" class="form-control col-sm-2" aria-label="Small" placeholder=""" + '"' + str(Fondo) + '"' + """ id="""+ '"' +'inputtext'+ str(variableValor) + '"' +""">'+
 '</div>'+
 '</div>'"""
 
@@ -910,8 +913,8 @@ contenidoform += '<div class="input-group input-group-sm mb-4">'+
 """
 
     #2.1 crear funcion get
-    contenido += """function obtenerinputtext"""+ str(Valor) + """(){
-        inputE = document.getElementById("inputtext""" + str(Valor) + '"' +""")
+    contenido += """function obtenerinputtext"""+ str(variableValor) + """(){
+        inputE = document.getElementById("inputtext""" + str(variableValor) + '"' +""")
         return inputE.value
     }"""
 
@@ -929,6 +932,10 @@ contenidoform += '<div class="input-group input-group-sm mb-4">'+
 #/////////////////////////////////////////////////////////////////
 #Funcion para crear INPUT RADIO
 def Finputradio(Nombre,Valores):
+
+    #Quitar Espacios
+    variableNombre = Gquitarespacios(Nombre)
+
     contenido ="""//----------------------------------------------------------------
 //[R1.0 GRUPO RADIO - GRUPO INPUT ]
 contenidoform += '<div class="col-md-12 mb-4">'+
@@ -943,9 +950,9 @@ contenidoform += '<div class="col-md-12 mb-4">'+
             cont += 1
             # 1.1 Agregar al listado de elementos radio
             contenido += """'<div class="form-check mb-0">'+
-    '<input class="form-check-input" type="radio"  name="""+'"'+'inputradio'+str(Nombre)+'"'+""">'+
+    '<input class="form-check-input" type="radio"  name="""+'"'+'inputradio'+str(variableNombre)+'"'+""">'+
 '<label class="form-check-label">'+
-    '""" +  g  + """'+
+    """ +  g  + """+
 '</label>'+
 '</div>'+"""
         #2.1 Fin For cierrre del div
@@ -961,19 +968,19 @@ contenidoform += '<div class="col-md-12 mb-4">'+
 
     #[ 4.0 Funcion para obtener datos ]
     contenido += """//Z1.1 OBTENER INPUT - RADIO SELECCIONADO
-Nombre = document.getElementsByName("""+'"'+'inputradio'+str(Nombre)+'"'+""")"""
+Nombre = document.getElementsByName("""+'"'+'inputradio'+str(variableNombre)+'"'+""")"""
 
     #Espacio
     contenido +="""         
         
 """
     #4.1 crea la funcion 
-    contenido += """function obtener"""+'inputradio'+str(Nombre)+"""() {"""
+    contenido += """function obtener"""+'inputradio'+str(variableNombre)+"""() {"""
     contenido += """//2.1 Listado con los Valores
     listadoNombre = """+ txtlist +"""
 
     //3.1 Obtiene los input radio 
-    var ele = document.getElementsByName("""+'"'+'inputradio'+str(Nombre)+'"'+""");
+    var ele = document.getElementsByName("""+'"'+'inputradio'+str(variableNombre)+'"'+""");
     //3.1.1 Evalua uno por uno para encontrar con el seleccionado
     for(i = 0; i < ele.length; i++) {
         if(ele[i].checked){
@@ -999,6 +1006,9 @@ Nombre = document.getElementsByName("""+'"'+'inputradio'+str(Nombre)+'"'+""")"""
 ################################################################
 #/////////////////////////////////////////////////////////////////
 def Finputselect(Nombre,Valores):
+    #Quitar Espacios
+    variableNombre = Gquitarespacios(Nombre)
+
     #A 1.0 crear Input Select
     contenido = """//----------------------------------------------------------------
 //[ S 1.0 GRUPO OPTION - SELECT ]
@@ -1006,7 +1016,7 @@ contenidoform += '<div class="input-group mb-3">'+
 '<div class="input-group-prepend col-md-2">'+
     '<label class="input-group-text" >"""+ str(Nombre)+"""</label>'+
 '</div>'+
-'<select class="custom-select col-md-3" id="select"""+str(Nombre)+'"'+""">'+
+'<select class="custom-select col-md-3" id="select"""+str(variableNombre)+'"'+""">'+
     '<option value="0" selected>Selecciona una opcion</option>'+"""
     
     #1.1 listado elementos select
@@ -1020,9 +1030,11 @@ contenidoform += '<div class="input-group mb-3">'+
     contenido +="""         
         
 """
+
+
     #2.1 Funcion Get
     contenido += """//3.1 Obtener opcion seleccionadas
-function obtenerselect"""+str(Nombre)+"""(){
+function obtenerselect"""+str(variableNombre)+"""(){
     selectNombre1 = document.getElementById("select"""+str(Nombre)+'"'+""")
     return selectNombre1.value
 }"""
@@ -1136,7 +1148,7 @@ def Gconvertirlistadoatexto(Listado):
     cont1 = 0
     for g in Listado:
         cont1 += 1 
-        txtlist += "'" + g +"'"
+        txtlist += '`' + g +"`"
         if cont1 < len(Listado):
             txtlist += ","
 
@@ -1148,6 +1160,82 @@ def Gconvertirlistadoatexto(Listado):
 #/////////////////////////////////////////////////////////////////
 ################################################################
 def crearformulario():
+    print("creando formulario...")
+
+    #[A1.0 Crear JAVASCRIPT ] 
+    try:
+        #[1.2 Abre el archivo]
+        f = open('formulario.js','w')
+        #[2.0 Nuevo contenido]
+
+        #DIV contenedor de formulario
+        contenido = """//Obtener div donde se colocara los elementos del formulario
+divcontenido = document.getElementById("contenidoformulario");"""
+
+        #[3.0 Evaluar Cada Elemento]
+        for elemento in ListadoElementos2:
+            #3.1 Evaluar tipo
+            if elemento.tipo == "etiqueta":
+                #Crear elemento-form
+                #[ CREAR LABEL ]
+                contenido += Flabel(elemento.valor)
+            elif elemento.tipo == "texto": 
+                #[ CREAR INPUT TEXT ]
+                contenido += Finputtext(elemento.valor,elemento.fondo)
+            elif elemento.tipo == "grupo-radio": 
+                #[ CREAR INPUT RADIO ]
+                contenido += Finputradio(elemento.nombre,elemento.valores)
+            elif elemento.tipo == "grupo-option": 
+                #[ CREAR INPUT SELECT ]
+                contenido += Finputselect(elemento.nombre,elemento.valores)
+            elif elemento.tipo == "boton":
+                #[ CREAR BOTON ]
+                contenido += Fboton(elemento.valor,elemento.evento)
+
+
+
+        
+
+        
+
+
+        
+        
+        
+
+        
+
+
+
+        
+
+        #IMPRIME NOMBRE FUNCIONES
+        print(Listadovarget)
+        
+
+
+
+        contenido +="""divcontenido.innerHTML = contenidoform"""
+
+
+
+        f.write(contenido)
+        f.close()
+    except Exception as e:
+        print("Error al modicar archivo javascript")
+        print(e)
+
+    mensaje = "Se creo el Formulario con exito"
+    return mensaje
+
+
+
+#/////////////////////////////////////////////////////////////////
+################################################################
+
+#/////////////////////////////////////////////////////////////////
+################################################################
+def crearformulario2funciones():
     print("creando formulario...")
 
     #[A1.0 Crear JAVASCRIPT ] 

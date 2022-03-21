@@ -11,6 +11,11 @@ divcontenido = document.getElementById("contenido");texto = `formulario ~>> [
     >,
     <
         tipo: "grupo-radio",
+        nombre: "sexo",
+        valores: ['Masculino', 'Femnino']
+    >,
+    <
+        tipo: "grupo-radio",
         nombre: "pais",
         valores: ['Guatemala', 'El Salvador','Honduras']
     >,
