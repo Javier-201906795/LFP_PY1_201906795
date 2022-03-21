@@ -39,8 +39,8 @@ def mensaje():
 def mensajeformulariocreado():
     print("mensaje")
     ventana = Tk()
-    ventana.geometry("180x80")
-    ventana.title("LFP_PY1_201906795.py[2]")
+    ventana.geometry("280x280")
+    ventana.title("LFP_PY1_201906795.py[Formulario creado]")
     
     lbl = Label(ventana,text="Formulario Creado.")
     lbl.pack()
@@ -1507,7 +1507,7 @@ Font2 = font.Font(family='Helvetica', size=10, weight='bold')
 
 
 
-lbl = Label(ventana,text="Cargar Archivo LFP", bg="white", fg="#4C5261")
+lbl = Label(ventana,text="Cargar Archivo .form", bg="white", fg="#4C5261")
 lbl['font']= Font1
 lbl.pack()
 lbl.place(x=5,y=10,width=200, height=40)
