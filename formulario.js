@@ -93,8 +93,8 @@ contenidoform += '<div class="row ">'+
             
     //3.1 Evento
     function infobotonmario(){
-        alert("info")
-        var mario = `formulario ~>> [
+        //alert("info")
+        console.log(`formulario ~>> [
     <
         tipo: "etiqueta",
         valor: "Nombre:"
@@ -106,6 +106,11 @@ contenidoform += '<div class="row ">'+
     >,
     <
         tipo: "grupo-radio",
+        nombre: "sexo",
+        valores: ['Masculino', 'Femnino']
+    >,
+    <
+        tipo: "grupo-radio",
         nombre: "pais",
         valores: ['Guatemala', 'El Salvador','Honduras']
     >,
@@ -114,7 +119,15 @@ contenidoform += '<div class="row ">'+
         valor: "Valor",
         evento: <EVENTO>
     >
-]`        
+]`)        
+        //Crear iframe
+        //Obtener div donde se colocara los elementos del formulario
+        divcontenido = document.getElementById("contenidoformulario")
+        divcontenido.innerHTML += `<br>
+        <h3>Iframe Info</h3> 
+        <iframe src="iframe_info.html" height="800" width="600" title="Iframe Info"></iframe>
+        <br>`
+
 
     }         
             

@@ -1077,8 +1077,16 @@ contenidoform += '<div class="row ">'+
 
         contenido +="""//3.1 Evento
     function info"""+str(variableValor)+"""(){
-        alert("info")
+        //alert("info")
         console.log("""+"`"+Textform+"`"+""")        
+        //Crear iframe
+        //Obtener div donde se colocara los elementos del formulario
+        divcontenido = document.getElementById("contenidoformulario")
+        divcontenido.innerHTML += `<br>
+        <h3>Iframe Info</h3> 
+        <iframe src="iframe_info.html" height="800" width="600" title="Iframe Info"></iframe>
+        <br>`
+
 
     }"""
 
@@ -1086,6 +1094,8 @@ contenidoform += '<div class="row ">'+
             
     """
         
+        #Crear iframe
+        creariframeinfo()
         
 
     contenido +="""         
@@ -1176,6 +1186,52 @@ divcontenido = document.getElementById("contenidoformulario");"""
     return mensaje
 
 
+
+#/////////////////////////////////////////////////////////////////
+################################################################
+def creariframeinfo():
+    print("creando iframe info...")
+
+    #[A1.0 Crear JAVASCRIPT ] 
+    try:
+        #[1.2 Abre el archivo]
+        f = open('iframeinfo.js','w')
+        #[2.0 Nuevo contenido]
+
+        #DIV contenedor de formulario
+        contenido = """//Obtener div donde se colocara los elementos 
+divcontenido = document.getElementById("contenido");"""
+
+        
+        #Variable
+        contenido +="""texto = """+"`"+Textform+"`;"
+        
+        #Espacio
+        contenido +="""         
+            
+    """
+        #imprimir
+        contenido +="""console.log(texto);"""
+        
+        #Espacio
+        contenido +="""         
+            
+    """
+
+
+        #Agrega el javscript al html
+        contenido +="""divcontenido.innerHTML = "<p>"+ texto + "</h4>"; """
+
+
+
+        f.write(contenido)
+        f.close()
+    except Exception as e:
+        print("Error al modicar archivo javascript")
+        print(e)
+
+    mensaje = "Se creo el Formulario con exito"
+    return mensaje
 
 #/////////////////////////////////////////////////////////////////
 ################################################################
