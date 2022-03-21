@@ -36,6 +36,55 @@ def mensaje():
     lbl.pack()
 
 ################################################################
+def mensajeformulariocreado():
+    print("mensaje")
+    ventana = Tk()
+    ventana.geometry("180x80")
+    ventana.title("LFP_PY1_201906795.py[2]")
+    
+    lbl = Label(ventana,text="Formulario Creado.")
+    lbl.pack()
+################################################################
+def reporteerrores():
+    ventana = Tk()
+    ventana.geometry("1200x600")
+    ventana.title("LFP_PY1_201906795.py[ERRORES]")
+
+    errorestxt = ""
+    print(len(ListaErrores))
+    if (len(ListaErrores)>0):
+
+        for g in ListaErrores:
+            errorestxt += str(g.imprimir()) +"\n"
+        
+        print(errorestxt)
+    else:
+        errorestxt = "No hay errores por el momento."
+
+    lbl = Label(ventana,text= errorestxt)
+    lbl.pack()
+
+################################################################
+def reportetokens():
+    ventana = Tk()
+    ventana.geometry("1000x600")
+    ventana.title("LFP_PY1_201906795.py[TOKENS]")
+
+    errorestxt = ""
+    print(len(ListadoElementos2))
+    if (len(ListadoElementos2)>0):
+
+        for g in ListadoElementos2:
+            errorestxt += str(g.imprimir()) +"\n"
+        
+        print(errorestxt)
+    else:
+        errorestxt = "No hay TOKENS generados por el momento."
+
+    lbl = Label(ventana,text= errorestxt)
+    lbl.pack()
+
+################################################################
 def imprimirerrores():
     print("\n")
     print("==============[ Errores ]==================")
@@ -1411,6 +1460,10 @@ divcontenido = document.getElementById("contenido");"""
 
         f.write(contenido)
         f.close()
+
+        #Mensaje
+        mensajeformulariocreado()
+
     except Exception as e:
         print("Error al modicar archivo javascript")
         print(e)
@@ -1487,8 +1540,8 @@ btnmenu['font']= Font2
 btnmenu.menu = Menu(btnmenu, tearoff=False)  
 btnmenu["menu"]= btnmenu.menu  
 
-btnmenu.menu.add_checkbutton(label = "Reporte de Tokens ", variable = 1, command=mensaje)  
-btnmenu.menu.add_checkbutton(label = "Reporte de Errores", variable = 2, command=mensaje)
+btnmenu.menu.add_checkbutton(label = "Reporte de Tokens ", variable = 1, command=reportetokens)  
+btnmenu.menu.add_checkbutton(label = "Reporte de Errores", variable = 2, command=reporteerrores)
 btnmenu.menu.add_checkbutton(label = "Manual de Usuario",  variable = 3, command=mensaje)
 btnmenu.menu.add_checkbutton(label = "Manual Tecnico",     variable = 4, command=mensaje)                            
 

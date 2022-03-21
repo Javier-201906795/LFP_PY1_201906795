@@ -25,7 +25,7 @@ formulario formulario$%12 ~>> [
     >,
     <
         tipo: "grupo-option",
-        nombre: "país",
+        nombre: "pais",
         valores: ['Guatemala', 'El salvador', 'Honduras']
     >,
 ]
