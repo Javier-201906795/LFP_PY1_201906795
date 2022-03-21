@@ -1,7 +1,7 @@
-formulario ~>> [
+formulario formulario$%12 ~>> [
     <
-        tipo: "etiqueta",
-        valor: "Nombre:"
+        tipo: "etiqueta123$",
+        valor: "Nombre:" ^&^&$%^55405
     >,
     <
         tipo: "texto",
@@ -9,22 +9,23 @@ formulario ~>> [
         fondo: "Ingrese nombre"
     >,
     <
+        tip!4o: "texto16546",
+        valor$%^$#: "Nombre",
+        fondo123: "Ingrese apellido"
+    >,
+    <
         tipo: "grupo-radio",
         nombre: "sexo",
-        valores: ['Masculino', 'Femnino']
-    >,
-    <
-        tipo: "grupo-radio",
-        nombre: "pais",
-        valores: ['Guatemala', 'El Salvador','Honduras']
-    >,
-    <
-        tipo: "etiqueta",
-        valor: "Tipo de color de ojos:"
+        valores: ['Masculino', 'Femenino']
     >,
     <
         tipo: "boton",
         valor: "Valor",
-        evento: <EVENTO>
-    >
+        evento: info111111116
+    >,
+    <
+        tipo: "grupo-option",
+        nombre: "país",
+        valores: ['Guatemala', 'El salvador', 'Honduras']
+    >,
 ]

@@ -155,7 +155,9 @@ contenidoform += '<div class="row ">'+
             
     //3.1 Evento
     function entradaentrada(){
-        alert("entrada");var ListadoDatos = [];         
+                 
+            
+    var ListadoDatos = [];         
             
       console.log(obtenerinputtextnombre());         
             
@@ -174,8 +176,17 @@ contenidoform += '<div class="row ">'+
      
             ListadoDatos.push(obtenerselectcolorojos());
             console.log("-------");
-            console.log(ListadoDatos);
-            console.log("-------");}         
+            console.log(ListadoDatos[1]);
+            console.log("-------");texto = "";
+            for (i=0;i < ListadoDatos.length;i++){
+                for (j=1;j >= 0;j--){
+                    texto += ListadoDatos[i][j] + " | " 
+                }
+            }
+            
+            divcontenido = document.getElementById("contenidoformulario");
+            divcontenido.innerHTML += texto;
+        }         
             
              
         

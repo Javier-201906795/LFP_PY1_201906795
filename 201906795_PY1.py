@@ -1131,8 +1131,11 @@ contenidoform += '<div class="row ">'+
         # 2.0 Funcion Mostrar datos entrada
         contenido +="""//3.1 Evento
     function entrada"""+str(variableValor)+"""(){
-        alert("entrada");"""
+        """
 
+        contenido +="""         
+            
+    """
         contenido += "var ListadoDatos = [];"
 
         contenido +="""         
@@ -1152,10 +1155,20 @@ contenidoform += '<div class="row ">'+
 
         #Guardar informacion
 
-        
+
         contenido += """console.log("-------");
             console.log(ListadoDatos[1]);
             console.log("-------");"""
+
+        contenido += """texto = "";
+            for (i=0;i < ListadoDatos.length;i++){
+                for (j=1;j >= 0;j--){
+                    texto += ListadoDatos[i][j] + " | " 
+                }
+            }
+            
+            divcontenido = document.getElementById("contenidoformulario");
+            divcontenido.innerHTML += texto;"""
         contenido +=  """
         }"""
 
